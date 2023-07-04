@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FichaController;
+use App\Http\Controllers\ProgramaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,15 +45,39 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
 
 
         Route::get('/dashboard', function () {
-            return view('home.masterPage');
+            return view('home.homePage');
         })->name('dashboard');
+
+
 
 
         // Rutas para el perfil
         Route::get('/profile/edit', [UserController::class, 'profile_edit'])->name('profile.edit');
         Route::put('/profile/edit', [UserController::class, 'profile_update'])->name('profile.update');
 
+        // Rutas para el usuario
         Route::get('/user', [UserController::class, 'index'])->name('user.index');
+        Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('/user', [UserController::class, 'store'])->name('user.store');
+        Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show');
+        Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+        Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+        Route::get('ficha', [FichaController::class, 'index'])->name('ficha.index');
+        Route::get('ficha/create', [FichaController::class, 'create'])->name('ficha.create');
+        Route::post('ficha', [FichaController::class, 'store'])->name('ficha.store');
+        Route::get('ficha/{ficha}/edit', [FichaController::class, 'edit'])->name('ficha.edit');
+        Route::put('ficha/update', [FichaController::class, 'update'])->name('ficha.update');
+        Route::delete('ficha/{ficha}', [FichaController::class, 'destroy'])->name('ficha.destroy');
+
+        Route::get('programa', [ProgramaController::class, 'index'])->name('programa.index');
+        Route::get('programa/create', [ProgramaController::class, 'create'])->name('programa.create');
+        Route::post('programa', [ProgramaController::class, 'store'])->name('programa.store');
+        Route::get('programa/{programa}/edit', [ProgramaController::class, 'edit'])->name('programa.edit');
+        Route::put('programa/{programa}', [ProgramaController::class, 'update'])->name('programa.update');
+        Route::delete('programa/{programa}', [ProgramaController::class, 'destroy'])->name('programa.destroy');
+
 
     });
 });

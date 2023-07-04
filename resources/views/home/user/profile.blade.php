@@ -157,10 +157,10 @@
                 <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Foto de perfil (opcional):</label>
                     <div class="col-sm-10">
-                      <input type="file" class="form-control" id="photo" name="photo">
-                    @error('photo')
-                        <small class="text-danger mt-1"><strong>{{ $message }}</strong></small>
-                    @enderror
+                        <input type="file" class="form-control" id="photo" name="photo">
+                        @error('photo')
+                            <small class="text-danger mt-1"><strong>{{ $message }}</strong></small>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-group row">

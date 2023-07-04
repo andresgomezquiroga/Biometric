@@ -12,11 +12,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href=" {{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
+
+    <!-- Estilos Datatables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
     <!-- Link css -->
     <link rel="stylesheet" href="{{ asset('css/elementos.css') }}">
@@ -117,40 +123,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <a href="{{route('dashboard')}}" class="nav-link active">
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>
-                                    Starter Pages
-                                    <i class="right fas fa-angle-left"></i>
+                                    Pagina principal
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-user"></i>
+                              <p>
+                                Usuarios
+                                <i class="right fas fa-angle-left"></i>
+                              </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                <a href="{{ route('user.index') }}" class="nav-link">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>Listar usuarios</p>
+                                </a>
+                              </li>
+                              <li class="nav-item">
+                                <a href="{{ route('user.create')}}" class="nav-link">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>Crear un usuario</p>
+                                </a>
+                              </li>
+                            </ul>
+                          </li>
+                        <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-file-alt"></i>
+                            <p>
+                            Fichas
+                            <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="{{ route('ficha.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Listar fichas</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('ficha.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear una ficha</p>
+                            </a>
+                            </li>
+                        </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p>
+                                Programas
+                                <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Active Page</p>
-                                    </a>
+                                <a href="{{ route('programa.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listar Programas</p>
+                                </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inactive Page</p>
-                                    </a>
+                                <a href="{{ route('programa.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear un Programa</p>
+                                </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Simple Link
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -161,28 +214,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">@yield('title_content' , 'Pagina principal')</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Starter Page</li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
+
             <!-- /.content-header -->
 
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
-                        @yield('content')
-                    <!-- /.row -->
+                    @yield('content')
+
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content -->
@@ -200,6 +239,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src=" {{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')  }} "></script>
     <!-- AdminLTE App -->
     <script src=" {{ asset('dist/js/adminlte.min.js')  }} "></script>
+
+
+    <!-- DataTables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
     <!-- Dashboard js -->
     <script src=" {{ asset('js/dashboard.js')  }} "></script>

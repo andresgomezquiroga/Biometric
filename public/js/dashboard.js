@@ -1,14 +1,26 @@
-// Para cerrar sesión
-$(document).ready(function() {
-    // Capturar el evento de clic en el enlace de cierre de sesión
-    $('#logout-link').click(function(e) {
-      e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
 
-      // Enviar una solicitud POST al servidor para cerrar la sesión
-      $.post('/logout', function() {
-        // Redireccionar a la página de inicio de sesión u otra página deseada
-        window.location.href = '/login';
-      });
-    });
+// Para las datables
+$(function () {
+
+    // Datable user
+  $("#users").DataTable({
+    "responsive": true, "lengthChange": false, "autoWidth": false,
+    "buttons": [
+      {
+        "extend": "pdf",
+        "className": "btn-danger mr-2",
+        "exportOptions": {
+          "columns": [0, 1, 2, 3, 4, 5, 6]  
+        }
+      },
+      {
+        "extend": "colvis",
+        "className": "btn-info",
+      }
+    ]    
+  }).buttons().container().appendTo('#users_wrapper .col-md-6:eq(0)');
+
 });
+
+
 

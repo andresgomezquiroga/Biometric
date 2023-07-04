@@ -63,12 +63,13 @@
                     <div class="col">
                         <div class="form-floating mb-3">
                             <select class="form-select form-select-lg mb-3" name="gander" id="gander">
+                                <option selected disabled>Selecciona tu genero:</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
-                                @error('gander')
-                                    <small class="text-danger mt-1"><strong>{{ $message }}</strong></small>
-                                @enderror
                             </select>
+                            @error('gander')
+                                <small class="text-danger mt-1"><strong>{{ $message }}</strong></small>
+                             @enderror
                         </div>
                     </div>
                 </div>
@@ -77,13 +78,14 @@
                     <div class="col">
                         <div class="form-floating mb-3">
                             <select class="form-select form-select-lg mb-3" name="type_document" id="type_document">
-                                <option value="TI">TI</option>
-                                <option value="CC">CC</option>
-                                <option value="CE">CE</option>
-                                @error('type_document')
-                                    <small class="text-danger mt-1"><strong>{{ $message }}</strong></small>
-                                @enderror
+                                <option selected disabled>Selecciona tu tipo de documento:</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="CC">Cedeula de ciudadania</option>
+                                <option value="CE">Cedula de extranjeria</option>
                             </select>
+                            @error('type_document')
+                                <small class="text-danger mt-1"><strong>{{ $message }}</strong></small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col">

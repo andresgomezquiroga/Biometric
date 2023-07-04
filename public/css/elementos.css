@@ -5,3 +5,13 @@
     width: 200px;
     height: 200px;
 }
+
+#usuario_photo {
+    width: 90px;
+    height: 90px;
+}
+
+/* Estilos para los tipo de estado en las tablas */
+#estiloStatus{
+    font-size:18px;
+}
