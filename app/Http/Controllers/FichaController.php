@@ -18,7 +18,7 @@ class FichaController extends Controller
 
     public function create()
     {
-        $programas = Programa::all(); // Obtener todos los programas de formación disponibles
+        $programas = Programa::all(); // Esto obtiene todos los programas de formación disponibles
 
         return view('home.ficha.create', compact('programas'));
     }
