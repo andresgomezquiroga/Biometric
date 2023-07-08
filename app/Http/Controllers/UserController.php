@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
@@ -176,18 +177,15 @@ class UserController extends Controller
 
 
     public function destroy(string $id) {
-
         $user = User::findOrFail($id);
-        if ($user->photo){
+        if ($user->photo) {
             $photoPath = public_path($user->photo);
             if (file_exists($photoPath)) {
                 unlink($photoPath);
             }
-
         }
         $user->delete();
-        return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
-
+        return redirect()->back()->with('delete', 'ok');
     }
 
 }

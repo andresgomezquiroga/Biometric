@@ -1,10 +1,10 @@
 @extends('home.masterPage')
 
-@section('title', 'Listado de usuarios')
+@section('title', 'Pagina principal')
 
 @section('content')
 
-@section('title_content', 'Crear usuario')
+@section('title_content', 'Pagina principal')
 
 <div class="background-image">
     <div class="welcome-message">

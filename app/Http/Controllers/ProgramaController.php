@@ -6,6 +6,7 @@ use App\Models\Programa;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
+
 class ProgramaController extends Controller
 {
     public function index()
@@ -67,6 +68,6 @@ class ProgramaController extends Controller
     {
         $programa->delete();
 
-        return redirect()->back()->with('success', 'Programa eliminado exitosamente');
+        return redirect()->back()->with('delete', 'ok');
     }
 }

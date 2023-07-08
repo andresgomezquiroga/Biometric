@@ -18,6 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
+    <link rel="stylesheet" href="{{asset('css/profile.css')}}">
 
     <!-- Estilos Datatables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -46,9 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link profile" data-toggle="dropdown" href="#">
                         Perfil
-                        <span class="badge badge-danger navbar-badge">2</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -204,6 +204,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
+                        <!-- enlace de asistencias-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-check"></i>
+                                <p>
+                                Asistencia
+                                <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                <a href="{{route('attendance.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listar asistencias</p>
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a href="{{ route('attendance.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear una asistencias</p>
+                                </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -256,7 +282,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
     <!-- Dashboard js -->
-    <script src=" {{ asset('js/dashboard.js')  }} "></script>
+    @yield('js')
 </body>
 
 </html>

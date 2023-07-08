@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\ProgramaController;
+use App\Http\Controllers\AsistenciaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,14 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::put('programa/{programa}', [ProgramaController::class, 'update'])->name('programa.update');
         Route::delete('programa/{programa}', [ProgramaController::class, 'destroy'])->name('programa.destroy');
 
-
+        
+        Route::get('attendance', [AsistenciaController::class, 'index'])->name('attendance.index');
+        Route::get('attendance/create', [AsistenciaController::class, 'create'])->name('attendance.create');
+        Route::post('attendance', [AsistenciaController::class, 'store'])->name('attendance.store');
+        Route::get('attendance/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('attendance.edit');
+        Route::put('attendance/{asistencia}', [AsistenciaController::class, 'update'])->name('attendance.update');
+        Route::delete('attendance/{asistencia}', [AsistenciaController::class, 'destroy'])->name('attendance.destroy');
+        
+        
     });
 });

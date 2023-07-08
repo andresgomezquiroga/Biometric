@@ -69,10 +69,10 @@
                     </td>
 
                     <td>
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                        <button class="btn btn-danger form-delete" data-id="{{ $user->id }}">Eliminar</button>
+                        <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
                   </tr>
@@ -101,5 +101,45 @@
   <!-- /.row -->
 
 
+
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $('.form-delete').click(function(e) {
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        Swal.fire({
+            title: '¿Estás seguro de eliminar el usuario?',
+            text: '¡No podrás revertir esto!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#delete-form-' + id).submit();
+            }
+        });
+    });
+</script>
+
+@if (session('delete') == 'ok')
+<script>
+    $(document).ready(function() {
+        Swal.fire(
+            '¡Eliminado correctamente!',
+            'El usuario ha sido eliminado exitosamente.',
+            'success'
+        );
+    });
+</script>
+@endif
 
 @endsection
