@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\ExcusesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,15 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('attendance/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('attendance.edit');
         Route::put('attendance/{asistencia}', [AsistenciaController::class, 'update'])->name('attendance.update');
         Route::delete('attendance/{asistencia}', [AsistenciaController::class, 'destroy'])->name('attendance.destroy');
+
+        Route::get('excuse', [ExcusesController::class, 'index'])->name('excuse.index');
+        Route::get('excuse/create', [ExcusesController::class, 'create'])->name('excuse.create');
+        Route::post('excuse', [ExcusesController::class, 'store'])->name('excuse.store');
+        Route::get('excuse/{excuse}/edit', [ExcusesController::class, 'edit'])->name('excuse.edit');
+        Route::put('excuse/{excuse}', [ExcusesController::class, 'update'])->name('excuse.update');
+        Route::delete('excuse/{excuse}', [ExcusesController::class, 'destroy'])->name('excuse.destroy');
+        Route::get('excuse/file/{filename}', [ExcusesController::class, 'viewFile'])->name('excuse.viewFile');
+        
         
         
     });

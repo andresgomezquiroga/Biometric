@@ -2921,15 +2921,15 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #047215;
+    border-color: #047215;
     box-shadow: none
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc
+    background-color: #022708;
+    border-color: #047215
 }
 
 .btn-primary.focus,
@@ -14311,7 +14311,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*=sidebar-dark-] {
-    background-color: #343a40
+    background-color: #012505;
 }
 
 [class*=sidebar-dark-] .user-panel a:hover {
@@ -15070,8 +15070,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 [class*=sidebar-dark] .btn-sidebar,
 [class*=sidebar-dark] .form-control-sidebar {
-    background-color: #3f474e;
-    border: 1px solid #56606a;
+    background-color: #003E06;
+    border: 1px solid white;
     color: #fff
 }
 
@@ -28412,7 +28412,7 @@ body.text-sm .input-group-text {
 }
 
 .card-primary:not(.card-outline)>.card-header {
-    background-color: #007bff
+    background-color: #023009
 }
 
 .card-primary:not(.card-outline)>.card-header,
