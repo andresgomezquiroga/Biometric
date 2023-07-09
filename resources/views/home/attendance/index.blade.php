@@ -24,7 +24,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <table id="users" class="table table-bordered table-striped text-center">
+                    <table id="attendance" class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>

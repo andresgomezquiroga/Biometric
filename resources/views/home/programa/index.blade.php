@@ -24,7 +24,7 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <table id="users" class="table table-bordered table-striped text-center">
+                    <table id="program" class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -74,6 +74,7 @@
 @endsection
 
 @section('js')
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if (session('delete') == 'ok')

@@ -1,6 +1,6 @@
 @extends('home.masterPage')
 
-@section('title', 'Listado de usuarios')
+@section('title', 'Listado de fichas')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
 <div class="container py-5">
     <h1 class="text-center" style="font-size: 25px;">Listado de fichas</h1>
-    <div class="row mt-5">
+    <div id="fichas" class="row mt-5">
         @foreach ($fichas as $ficha)
         <div class="col-lg-4 mb-4">
             <div class="card">
@@ -34,6 +34,8 @@
 </div>
 
 @endsection
+
+
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
