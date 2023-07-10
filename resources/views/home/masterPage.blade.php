@@ -204,17 +204,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
+<<<<<<< HEAD
+                        <!-- link to timeTable -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-duotone fa-calendar"></i>
+                                <p>
+                                Horarios
+=======
                         <!-- enlace de asistencias-->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-check"></i>
                                 <p>
                                 Asistencia
+>>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
                                 <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+<<<<<<< HEAD
+                                <a href="{{route('timeTable.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listar Horarios</p>
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a href="{{route('timeTable.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear un Horario</p>
+=======
                                 <a href="{{route('attendance.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Listar asistencias</p>
@@ -224,10 +244,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <a href="{{ route('attendance.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Crear una asistencias</p>
+>>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
                                 </a>
                                 </li>
                             </ul>
                         </li>
+<<<<<<< HEAD
+                        <!--------------------------------------------------------------------------->
+=======
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -252,6 +276,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+>>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
 
                     </ul>
                 </nav>
