@@ -76,7 +76,7 @@ class FichaController extends Controller
     public function destroy(Ficha $ficha)
     {
         $ficha->delete();
-
-        return redirect()->route('ficha.index')->with('success', 'Ficha eliminada exitosamente.');
+    
+        return redirect()->route('ficha.index')->with('delete', 'ok');
     }
 }

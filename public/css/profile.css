@@ -1,0 +1,28 @@
+.profile {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Oculta el contenido que se desborda */
+}
+
+.profile::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Inicia con ancho cero */
+    height: 4px;
+    background-color: green;
+    animation: expandBorder 2s linear infinite; /* Duración de la animación y repetición infinita */
+}
+
+@keyframes expandBorder {
+    0% {
+        width: 0; /* Inicio de la animación */
+    }
+    50% {
+        width: 100%; /* Ancho máximo de la animación */
+    }
+    100% {
+        width: 0; /* Final de la animación */
+    }
+}

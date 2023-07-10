@@ -1,20 +1,20 @@
 @extends('home.masterPage')
 
-@section('title', 'Listado de usuarios')
+@section('title', 'Listado de asistencias')
 
 @section('content')
 
-@section('title_content' , 'Listado de programas')
+@section('title_content' , 'Listado de asistencias')
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Tabla de Programas</h3>
+                <h3 class="card-title">Tabla de asistencias</h3>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Aquí está toda la información de los programas</h3>
+                    <h3 class="card-title">Aquí está toda la información de las asistencias</h3>
                     @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                         <small>
@@ -24,30 +24,30 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <table id="program" class="table table-bordered table-striped text-center">
+                    <table id="attendance" class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Código del programa</th>
-                                <th>Nombre del programa</th>
+                                <th>Hora de la asistencia</th>
+                                <th>Comentarios</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($programas as $programa)
+                            @foreach ($asistencias as $asistencia)
                             <tr>
-                                <td>{{ $programa->id_program }}</td>
-                                <td>{{ $programa->program_code }}</td>
-                                <td>{{ $programa->name_program }}</td>
+                                <td>{{$asistencia->id_attendance}}</td>
+                                <td>{{$asistencia->admission_time}}</td>
+                                <td>{{$asistencia->comments}}</td>
 
                                 <td>
-                                    <a href="{{ route('programa.edit', $programa->id_program) }}" class="btn btn-primary">Editar</a>
+                                    <a href="{{ route('attendance.edit', $asistencia->id_attendance) }}" class="btn btn-primary">Editar</a>
                                 </td>
 
                                 <td>
-                                    <button class="btn btn-danger form-delete" data-id="{{$programa->id_program}}">Eliminar</button>
-                                    <form id="delete-form-{{$programa->id_program}}" action="{{ route('programa.destroy', $programa->id_program) }}" method="POST" style="display: none;">
+                                    <button class="btn btn-danger form-delete" data-id="{{$asistencia->id_attendance}}">Eliminar</button>
+                                    <form id="delete-form-{{$asistencia->id_attendance}}" action="{{ route('attendance.destroy', $asistencia->id_attendance) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
@@ -58,8 +58,8 @@
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Código del programa</th>
-                                <th>Nombre del programa</th>
+                                <th>Hora de la asistencia</th>
+                                <th>Comentarios</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -74,14 +74,13 @@
 @endsection
 
 @section('js')
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if (session('delete') == 'ok')
 <script>
     Swal.fire(
         'Eliminado correctamente!',
-        'Su programa ha sido eliminado.',
+        'Su asistencia ha sido eliminada.',
         'success'
     )
 </script>
@@ -94,7 +93,7 @@
         var id = $(this).data('id');
 
         Swal.fire({
-            title: '¿Estás seguro de eliminar el programa de formacion?',
+            title: '¿Estás seguro de eliminar esta asistencia?',
             text: '¡No podrás revertir esto!',
             icon: 'warning',
             showCancelButton: true,
@@ -104,7 +103,6 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Enviar el formulario de eliminación
                 $('#delete-form-' + id).submit();
             }
         });

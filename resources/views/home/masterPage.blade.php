@@ -18,6 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
+    <link rel="stylesheet" href="{{asset('css/profile.css')}}">
 
     <!-- Estilos Datatables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -46,9 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link profile" data-toggle="dropdown" href="#">
                         Perfil
-                        <span class="badge badge-danger navbar-badge">2</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
@@ -204,17 +204,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
+<<<<<<< HEAD
                         <!-- link to timeTable -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-duotone fa-calendar"></i>
                                 <p>
                                 Horarios
+=======
+                        <!-- enlace de asistencias-->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-check"></i>
+                                <p>
+                                Asistencia
+>>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
                                 <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+<<<<<<< HEAD
                                 <a href="{{route('timeTable.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Listar Horarios</p>
@@ -224,11 +234,49 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <a href="{{route('timeTable.create')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Crear un Horario</p>
+=======
+                                <a href="{{route('attendance.index')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listar asistencias</p>
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a href="{{ route('attendance.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear una asistencias</p>
+>>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
                                 </a>
                                 </li>
                             </ul>
                         </li>
+<<<<<<< HEAD
                         <!--------------------------------------------------------------------------->
+=======
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Excusas
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('excuse.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listar excusas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('excuse.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Crear una excusa</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+>>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
 
                     </ul>
                 </nav>
@@ -267,22 +315,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src=" {{ asset('dist/js/adminlte.min.js')  }} "></script>
 
 
-    <!-- DataTables -->
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+
+<!-- Estilos Datatables -->
+<link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+<!-- DataTables -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+<!-- Dashboard js -->
+<script src="{{ asset('js/dashboard.js') }}"></script>
+<script src="{{ asset('js/search_ficha.js') }}"></script>
 
     <!-- Dashboard js -->
-    <script src=" {{ asset('js/dashboard.js')  }} "></script>
+    @yield('js')
+
 </body>
 
 </html>
