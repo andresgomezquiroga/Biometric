@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\ProgramaController;
-
+use App\Http\Controllers\HorariosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +77,14 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('programa/{programa}/edit', [ProgramaController::class, 'edit'])->name('programa.edit');
         Route::put('programa/{programa}', [ProgramaController::class, 'update'])->name('programa.update');
         Route::delete('programa/{programa}', [ProgramaController::class, 'destroy'])->name('programa.destroy');
+
+        Route::get('timeTable', [HorariosController::class,'index'])->name('timeTable.index');
+        Route::get('timeTable/create', [HorariosController::class,'create'])->name('timeTable.create');
+        Route::post('timeTable', [HorariosController::class,'store'])->name('timeTable.store');
+        Route::post('timeTable/{horario}/edit', [HorariosController::class,'edit'])->name('timeTable.edit');
+        Route::post('timeTable/{horario}', [HorariosController::class,'update'])->name('timeTable.update');
+        Route::post('timeTable/{horario}', [HorariosController::class,'destroy'])->name('timeTable.destroy');
+
 
 
     });
