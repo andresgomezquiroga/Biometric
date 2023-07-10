@@ -38,7 +38,17 @@
                                     <td>{{ $excuse->id_excuse }}</td>
                                     <td>{{ $excuse->comment }}</td>
                                     <td>
-                                        <a href="{{ asset('storage/' . $excuse->archive) }}" class="btn btn-secondary" target="_blank">Visualizar excusa</a>
+                                        <a href="{{ asset('storage/' . $excuse->archive) }}" target="_blank">
+                                            @if (Str::endsWith($excuse->archive, '.pdf'))
+                                            <i class="nav-icon fas fa-solid fa-file-pdf text-danger fa-lg"></i>
+                                            @elseif (Str::endsWith($excuse->archive, '.docx'))
+                                            <i class="nav-icon fas fa-solid fa-file-word text-primary fa-lg"></i>
+                                            @elseif (Str::endsWith($excuse->archive, '.jpg') || Str::endsWith($excuse->archive, '.jpeg') || Str::endsWith($excuse->archive, '.png'))
+                                            <i class="nav-icon fas fa-solid fa-file-image text-success fa-lg"></i>
+                                            @else
+                                            <i class="nav-icon fas fa-solid fa-file fa-lg"></i>
+                                            @endif
+                                        </a>
                                     </td>
                                     <td>
                                         <a href="{{ route('excuse.edit', $excuse->id_excuse) }}" class="btn btn-primary">Editar</a>
