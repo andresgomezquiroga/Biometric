@@ -54,12 +54,12 @@ class ExcusesController extends Controller
     {
         $request->validate([
             'comment' => 'required|string|max:255',
-            'new_file' => 'nullable|file|mimes:pdf',
+            'archive' => 'nullable|file|mimes:pdf,docx,jpg,jpeg,png',
         ]);
 
         $excuse->comment = $request->comment;
 
-        $newFile = $request->file('new_file');
+        $newFile = $request->file('archive');
         if ($newFile) {
             $filename = $newFile->getClientOriginalName();
             Storage::delete('public/' . $excuse->archive);
