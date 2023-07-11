@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Horarios;
 use Illuminate\Http\Request;
+
 
 class HorariosController extends Controller
 {
@@ -61,22 +62,39 @@ class HorariosController extends Controller
      */
     public function edit(Horarios $horarios)
     {
-        //
+        return view('home.timeTable.edit', compact('horarios'));
     }
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Horarios $horarios)
+    public function update(Request $request, $horario)
     {
-        //
+        $validator = validator($request->all(), [
+            'Jornada' => 'required|in:Manana,Tarde,Mixta',
+            'Fecha_inicio' => 'required',
+            'Fecha_finalizacion' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        $horarios = Horarios::findOrFail($horario); // Obtener la instancia del modelo
+    
+        $horarios->update([
+            'Jornada' => $request->Jornada,
+            'Fecha_inicio' => $request->Fecha_inicio,
+            'Fecha_finalizacion' => $request->Fecha_finalizacion,
+        ]);
+    
+        return redirect()->back()->with('success', 'Horario actualizado exitosamente');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Horarios $horarios)
     {
         //
+        return redirect()->back()->with('delete', 'ok');
     }
 }

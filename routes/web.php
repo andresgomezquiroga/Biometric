@@ -5,13 +5,9 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\ProgramaController;
-<<<<<<< HEAD
 use App\Http\Controllers\HorariosController;
-=======
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ExcusesController;
-
->>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,24 +80,21 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::put('programa/{programa}', [ProgramaController::class, 'update'])->name('programa.update');
         Route::delete('programa/{programa}', [ProgramaController::class, 'destroy'])->name('programa.destroy');
 
-<<<<<<< HEAD
-        Route::get('timeTable', [HorariosController::class,'index'])->name('timeTable.index');
-        Route::get('timeTable/create', [HorariosController::class,'create'])->name('timeTable.create');
-        Route::post('timeTable', [HorariosController::class,'store'])->name('timeTable.store');
-        Route::post('timeTable/{horario}/edit', [HorariosController::class,'edit'])->name('timeTable.edit');
-        Route::post('timeTable/{horario}', [HorariosController::class,'update'])->name('timeTable.update');
-        Route::post('timeTable/{horario}', [HorariosController::class,'destroy'])->name('timeTable.destroy');
-
-
-=======
-        
         Route::get('attendance', [AsistenciaController::class, 'index'])->name('attendance.index');
         Route::get('attendance/create', [AsistenciaController::class, 'create'])->name('attendance.create');
         Route::post('attendance', [AsistenciaController::class, 'store'])->name('attendance.store');
-        Route::get('attendance/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('attendance.edit');
-        Route::put('attendance/{asistencia}', [AsistenciaController::class, 'update'])->name('attendance.update');
-        Route::delete('attendance/{asistencia}', [AsistenciaController::class, 'destroy'])->name('attendance.destroy');
->>>>>>> 2c3fc8c00e4dc46360d9f8b0ff2d1861626be343
+        Route::get('attendance/{attendance}/edit', [AsistenciaController::class, 'edit'])->name('attendance.edit');
+        Route::put('attendance/{attendance}', [AsistenciaController::class, 'update'])->name('attendance.update');
+        Route::delete('attendance/{attendance}', [AsistenciaController::class, 'destroy'])->name('attendance.destroy');
+
+        Route::get('timeTable', [HorariosController::class,'index'])->name('timeTable.index');
+        Route::get('timeTable/create', [HorariosController::class,'create'])->name('timeTable.create');
+        Route::post('timeTable', [HorariosController::class,'store'])->name('timeTable.store');
+        Route::get('timeTable/{horarios}/edit', [HorariosController::class,'edit'])->name('timeTable.edit');
+        Route::put('timeTable/{horario}', [HorariosController::class, 'update'])->name('timeTable.update');
+        Route::delete('timeTable/{horario}', [HorariosController::class,'destroy'])->name('timeTable.destroy');
+
+
 
         Route::get('excuse', [ExcusesController::class, 'index'])->name('excuse.index');
         Route::get('excuse/create', [ExcusesController::class, 'create'])->name('excuse.create');

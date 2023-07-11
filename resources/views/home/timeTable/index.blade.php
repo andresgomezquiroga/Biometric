@@ -39,13 +39,13 @@
                 <tbody>
                     @foreach ($horarios as $horario)
                   <tr>
-                    <td>{{ $horario->id_horario }}</td>
-                    <td>{{ $horario->Jornada }}</td>
-                    <td>{{ $horario->Fecha_incio }}</td>
-                    <td>{{ $horario->Fecha_finalizacion }}</td>
+                    <td>{{$horario->Id_timeTable}}</td>
+                    <td>{{$horario->Jornada}}</td>
+                    <td>{{$horario->Fecha_inicio}}</td>
+                    <td>{{$horario->Fecha_finalizacion}}</td>
 
                     <td>
-                        <a href="#" class="btn btn-primary">Editar</a>
+                    <a href="{{route('timeTable.edit', $horario->Id_timeTable)}}" class="btn btn-primary">Editar</a>
                     </td>
 
                     <td>
