@@ -39,7 +39,7 @@
                         <input type="time" class="form-control" id="admission_time" name="admission_time"> 
                     </div>
                     <div class="form-group">
-                        <label for="comments">Comentarios</label>
+                        <label for="comments">Observaciones</label>
                         <textarea name="comments" id="comments" cols="30" rows="5" class="form-control"></textarea>
                     </div>
 
@@ -72,7 +72,7 @@
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label for="program_code">Comentarios:</label>
+                <label for="program_code">Observaciones:</label>
                 <input value="{{$asistencia->comments}}" class="form-control" readonly>
             </div>
         </div>

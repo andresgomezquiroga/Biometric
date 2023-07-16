@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="form-control">Crear</button>
+                        <button type="submit" class="btn btn-primary">Crear</button>
                     </div>
 
                 </form>

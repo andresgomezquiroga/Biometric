@@ -45,14 +45,14 @@
                     <td>{{$horario->Fecha_finalizacion}}</td>
 
                     <td>
-                    <a href="{{route('timeTable.edit', $horario->Id_timeTable)}}" class="btn btn-primary">Editar</a>
+                      <a href="{{route('timeTable.edit', $horario->Id_timeTable)}}" class="btn btn-primary">Editar</a>
                     </td>
 
                     <td>
-                        <form action="#" method="POST" style="display: inline-block;">
+                        <button type="submit" class="btn btn-danger form-delete" data-id='{{$horario->Id_timeTable}}'>Eliminar</button>
+                        <form id="delete-form-{{$horario->Id_timeTable}}" action="{{ route('timeTable.destroy', $horario->Id_timeTable) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este programa?')">Eliminar</button>
                         </form>
                     </td>
                   </tr>
@@ -81,3 +81,41 @@
 
 
 @endsection
+@section('js')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+        'Eliminado correctamente!',
+        'Su Horario ha sido eliminado.',
+        'success'
+    )
+</script>
+@endif
+
+<script>
+    $('.form-delete').click(function(e) {
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        Swal.fire({
+            title: '¿Estás seguro de eliminar el horario?',
+            text: '¡No podrás revertir esto!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminarlo',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#delete-form-' + id).submit();
+            }
+        });
+    });
+</script>
+@endsection
+

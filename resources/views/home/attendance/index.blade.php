@@ -29,7 +29,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Hora de la asistencia</th>
-                                <th>Comentarios</th>
+                                <th>Observaciones</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -59,7 +59,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Hora de la asistencia</th>
-                                <th>Comentarios</th>
+                                <th>Observaciones</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>

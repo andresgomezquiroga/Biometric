@@ -34,6 +34,7 @@ class HorariosController extends Controller
             'Jornada' => 'required|in:Manana,Tarde,Mixta',
             'Fecha_inicio' => 'required',
             'Fecha_finalizacion' => 'required',
+            
         ]);
 
         if ($validator->fails()) {
@@ -95,6 +96,7 @@ class HorariosController extends Controller
     public function destroy(Horarios $horarios)
     {
         //
+        $horarios->delete();
         return redirect()->back()->with('delete', 'ok');
     }
 }

@@ -41,7 +41,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="comments">Comentarios</label>
+                                <label for="comments">Observaciones</label>
                                 <textarea name="comments" id="comments" cols="30" rows="5" class="form-control"></textarea>
                             </div>
                         </div>

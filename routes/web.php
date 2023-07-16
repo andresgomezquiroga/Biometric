@@ -8,6 +8,7 @@ use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ExcusesController;
+use App\Http\Controllers\CompetenceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,8 +84,8 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('attendance', [AsistenciaController::class, 'index'])->name('attendance.index');
         Route::get('attendance/create', [AsistenciaController::class, 'create'])->name('attendance.create');
         Route::post('attendance', [AsistenciaController::class, 'store'])->name('attendance.store');
-        Route::get('attendance/{attendance}/edit', [AsistenciaController::class, 'edit'])->name('attendance.edit');
-        Route::put('attendance/{attendance}', [AsistenciaController::class, 'update'])->name('attendance.update');
+        Route::get('attendance/{asistencia}/edit', [AsistenciaController::class, 'edit'])->name('attendance.edit');
+        Route::put('attendance/{asistencia}', [AsistenciaController::class, 'update'])->name('attendance.update');
         Route::delete('attendance/{attendance}', [AsistenciaController::class, 'destroy'])->name('attendance.destroy');
 
         Route::get('timeTable', [HorariosController::class,'index'])->name('timeTable.index');
@@ -92,7 +93,7 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::post('timeTable', [HorariosController::class,'store'])->name('timeTable.store');
         Route::get('timeTable/{horarios}/edit', [HorariosController::class,'edit'])->name('timeTable.edit');
         Route::put('timeTable/{horario}', [HorariosController::class, 'update'])->name('timeTable.update');
-        Route::delete('timeTable/{horario}', [HorariosController::class,'destroy'])->name('timeTable.destroy');
+        Route::delete('timeTable/{horarios}', [HorariosController::class,'destroy'])->name('timeTable.destroy');
 
 
 
@@ -104,6 +105,12 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::delete('excuse/{excuse}', [ExcusesController::class, 'destroy'])->name('excuse.destroy');
         Route::get('excuse/file/{filename}', [ExcusesController::class, 'viewFile'])->name('excuse.viewFile');
         
+        Route::get('competence', [CompetenceController::class, 'index'])->name('competence.index');
+        Route::get('competence/create', [CompetenceController::class, 'create'])->name('competence.create');
+        Route::post('competence', [CompetenceController::class, 'store'])->name('competence.store');
+        Route::get('competence/{competence}/edit', [CompetenceController::class, 'edit'])->name('competence.edit');
+        Route::put('competence/{competence}', [CompetenceController::class, 'update'])->name('competence.update');
+        Route::delete('competence/{competence}', [CompetenceController::class, 'destroy'])->name('competence.destroy');
         
         
     });

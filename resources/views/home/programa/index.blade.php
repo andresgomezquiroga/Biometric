@@ -104,7 +104,6 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Enviar el formulario de eliminación
                 $('#delete-form-' + id).submit();
             }
         });
