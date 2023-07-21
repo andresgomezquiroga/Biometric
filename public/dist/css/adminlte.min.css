@@ -14311,7 +14311,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*=sidebar-dark-] {
-    background-color: #012505;
+    background-color: #1d221c;
 }
 
 [class*=sidebar-dark-] .user-panel a:hover {
@@ -15070,7 +15070,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 [class*=sidebar-dark] .btn-sidebar,
 [class*=sidebar-dark] .form-control-sidebar {
-    background-color: #003E06;
+    background-color: black;
     border: 1px solid white;
     color: #fff
 }

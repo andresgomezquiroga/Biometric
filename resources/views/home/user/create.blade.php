@@ -111,10 +111,24 @@
                     <div class="form-group">
                         <label>Correo electronico:</label>
                         <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control">
-                    @error('email')
-                        <small class="text-danger"><strong>{{$message}}</strong></small>
-                    @enderror
+                        @error('email')
+                            <small class="text-danger"><strong>{{$message}}</strong></small>
+                        @enderror
                     </div>
+
+                    <div class="form-group text-center">
+                        <label>Elegir tipo de roles de usuario:</label>
+                        <select class="selectpicker" multiple name="roles[]" id="roles">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                          </select>
+                          <br>
+                          @error('roles')
+                              <small class="text-danger"><strong>{{$message}}</strong></small>
+                          @enderror
+                    </div>
+
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Crear usuario</button>

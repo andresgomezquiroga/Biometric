@@ -32,6 +32,7 @@
                                 <th>Numero de documento</th>
                                 <th>email</th>
                                 <th>Tipo de estado</th>
+                                <th>Rol</th>
                                 <th>Foto</th>
                                 <th>Visualizacion</th>
                                 <th>Editar</th>
@@ -49,6 +50,8 @@
                                     @else
                                         <td><span class="badge badge-danger" id="estiloStatus">Inactivo</span></td>
                                     @endif
+
+                                    <td>{{ $userRoles[$user->id] }}</td>
 
                                     @if ($user->photo == null)
                                         <td>
@@ -88,6 +91,7 @@
                                 <th>Numero de documento</th>
                                 <th>Correo electrónico</th>
                                 <th>Estado</th>
+                                <th>Rol</th>
                                 <th>Foto</th>
                                 <th>Visualizar</th>
                                 <th>Editar</th>

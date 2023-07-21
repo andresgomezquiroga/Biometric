@@ -32,6 +32,7 @@
                     <th>Jornada</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
+                    <th>Codigo de la ficha</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
@@ -43,6 +44,7 @@
                     <td>{{$horario->Jornada}}</td>
                     <td>{{$horario->Fecha_inicio}}</td>
                     <td>{{$horario->Fecha_finalizacion}}</td>
+                    <td>{{ $horario->ficha ? $horario->ficha->number_ficha : 'No encontrado codigo de la ficha' }}</td>
 
                     <td>
                       <a href="{{route('timeTable.edit', $horario->Id_timeTable)}}" class="btn btn-primary">Editar</a>
@@ -64,6 +66,7 @@
                     <th>Jornada</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
+                    <th>Codigo de la ficha</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>

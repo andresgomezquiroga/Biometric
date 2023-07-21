@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Horarios;
 use Illuminate\Http\Request;
+use App\Models\Ficha;
 
 
 class HorariosController extends Controller
@@ -13,7 +14,7 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        $horarios = Horarios::all();
+        $horarios = Horarios::with('ficha')->get();
         return view('home.timeTable.index', compact('horarios'));
     }
 
@@ -22,7 +23,8 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        return view('home.timeTable.create');
+        $fichas = Ficha::all();
+        return view('home.timeTable.create', compact('fichas'));
     }
 
     /**
@@ -30,24 +32,23 @@ class HorariosController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'Jornada' => 'required|in:Manana,Tarde,Mixta',
             'Fecha_inicio' => 'required',
             'Fecha_finalizacion' => 'required',
-            
+            'ficha_id' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        Horarios::create([
-            'Jornada' => $request->Jornada,
-            'Fecha_inicio' => $request->Fecha_inicio,
-            'Fecha_finalizacion' => $request->Fecha_finalizacion,
-        ]);
+        $horario = new Horarios();
+        $horario->Jornada = $request->input('Jornada');
+        $horario->Fecha_inicio = $request->input('Fecha_inicio');
+        $horario->Fecha_finalizacion = $request->input('Fecha_finalizacion');
+        $horario->ficha_id = $request->input('ficha_id');
+        $horario->save();
 
         return redirect()->back()->with('success', 'Horario creado exitosamente');
+
+
     }
 
     /**
@@ -63,32 +64,31 @@ class HorariosController extends Controller
      */
     public function edit(Horarios $horarios)
     {
-        return view('home.timeTable.edit', compact('horarios'));
+        $fichas = Ficha::all();
+        return view('home.timeTable.edit', compact('horarios', 'fichas'));
     }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $horario)
     {
-        $validator = validator($request->all(), [
+        $request->validate([
             'Jornada' => 'required|in:Manana,Tarde,Mixta',
             'Fecha_inicio' => 'required',
             'Fecha_finalizacion' => 'required',
+            'ficha_id' => 'required',
         ]);
-    
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    
-        $horarios = Horarios::findOrFail($horario); // Obtener la instancia del modelo
-    
-        $horarios->update([
-            'Jornada' => $request->Jornada,
-            'Fecha_inicio' => $request->Fecha_inicio,
-            'Fecha_finalizacion' => $request->Fecha_finalizacion,
-        ]);
-    
+
+        $horario = new Horarios();
+        $horario->Jornada = $request->input('Jornada');
+        $horario->Fecha_inicio = $request->input('Fecha_inicio');
+        $horario->Fecha_finalizacion = $request->input('Fecha_finalizacion');
+        $horario->ficha_id = $request->input('ficha_id');
+        $horario->update();
+
         return redirect()->back()->with('success', 'Horario actualizado exitosamente');
+
+
     }
     /**
      * Remove the specified resource from storage.

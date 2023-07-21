@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,7 @@ class UserController extends Controller
         return view ('home.user.profile');
     }
     public function profile_update(Request $request) {
+
         $user = Auth::user(); // Obtiene los datos del usuario logueado
 
         // Validacion de los datos
@@ -65,51 +67,67 @@ class UserController extends Controller
         }else {
             return redirect()->back()->with('info', 'No se realizó ninguna actualización.');
         }
+
     }
 
-
-    public function index() {
+    public function index()
+    {
         $users = User::all();
-        return view('home.user.index' , compact('users'));
+        $userRoles = [];
+    
+        foreach ($users as $user) {
+            $roles = $user->roles ? $user->roles->pluck('name') : collect(); // Verifica si $user->roles es null y, en ese caso, crea una colección vacía
+            $userRoles[$user->id] = $roles->implode(', ');
+        }
+    
+        return view('home.user.index', compact('users'))->with('userRoles', $userRoles);
     }
     public function create() {
-        return view('home.user.create');
+        $roles = Role::all();
+        return view('home.user.create' , compact('roles'));
     }
-    public function store(Request $request) {
-
-       $request->validate([
-           'first_name' => 'required',
-           'last_name' => 'required',
-           'age' => 'required|numeric|between:15,80',
-           'gander' => 'required|in:M,F',
-           'type_document' => 'required|in:TI,CC,CE',
-           'document_number' => 'required|integer',
-           'email' => 'required|email|unique:users',
-       ]);
-
-       $user = new User();
-
-       $user->first_name = $request->post('first_name');
-       $user->last_name = $request->post('last_name');
-       $user->age = $request->post('age');
-       $user->gander = $request->post('gander');
-       $user->type_document = $request->post('type_document');
-       $user->document_number = $request->post('document_number');
-       $user->email = $request->post('email');
-       $user->password = bcrypt($request->post('document_number'));
-       $user->status = 'ACTIVE';
-
-       $user->save();
-
-       return redirect()->back()->with('success', 'Usuario creado correctamente.');
+    public function store(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'age' => 'required|numeric|between:15,80',
+            'gander' => 'required|in:M,F',
+            'type_document' => 'required|in:TI,CC,CE',
+            'document_number' => 'required|digits_between:1,20',
+            'email' => 'required|email|unique:users',
+            'roles' => 'required|array|min:1',
+            'roles.*' => 'exists:roles,id',
+        ]);
+    
+        $user = new User();
+    
+        $user->first_name = $request->post('first_name');
+        $user->last_name = $request->post('last_name');
+        $user->age = $request->post('age');
+        $user->gander = $request->post('gander');
+        $user->type_document = $request->post('type_document');
+        $user->document_number = $request->post('document_number');
+        $user->email = $request->post('email');
+        $user->password = Hash::make($request->post('document_number')); // Usar Hash::make para generar el hash de la contraseña
+        $user->status = 'ACTIVE';
+    
+        $user->save();
+    
+        $user->assignRole($request->input('roles')); // Usar assignRole para asignar roles al usuario
+    
+        return redirect()->back()->with('success', 'Usuario creado correctamente.');
     }
     public function show(string $id) {
         $user = User::findOrFail($id);
+        $userRoles = $user->roles->pluck('id')->toArray();
         return view('home.user.show', compact('user'));
     }
     public function edit(string $id) {
         $user = User::findOrFail($id);
-        return view('home.user.edit', compact('user'));
+        $roles = Role::all();
+        $userRoles = $user->roles->pluck('id')->toArray();
+        return view('home.user.edit', compact('user', 'roles', 'userRoles'));
     }
 
     public function update(Request $request, string $id) {
@@ -125,10 +143,12 @@ class UserController extends Controller
             'age' => 'required|numeric|between:15,80',
             'gander' => 'required|in:M,F',
             'type_document' => 'required|in:TI,CC,CE',
-            'document_number' => 'required|integer',
+            'document_number' => 'required|digits_between:1,20',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'required|min:6',
-            'status' => 'required|in:ACTIVE,INACTIVE'
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'roles' => 'required|array|min:1',
+            'roles.*' => 'exists:roles,id',
         ]);
 
         $fieldsToUpdate = [
@@ -154,8 +174,17 @@ class UserController extends Controller
             $huboCambios = true;
         }
 
+        $rolesActuales = $user->roles->pluck('id')->toArray();
+        $rolesSeleccionados = $request->input('roles');
+
+        if (count(array_diff($rolesActuales, $rolesSeleccionados)) > 0 || count(array_diff($rolesSeleccionados, $rolesActuales)) > 0) {
+            $user->roles()->sync($rolesSeleccionados);
+            $huboCambios = true;
+        }
+
         if ($huboCambios) {
             $user->update();
+            $user->roles()->sync($request->input('roles'));
             return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
         } else {
             return redirect()->back()->with('info', 'No se realizó ninguna actualización.');
@@ -163,17 +192,30 @@ class UserController extends Controller
 
     }
 
-
     public function destroy(string $id) {
+        // Find the user by ID
         $user = User::findOrFail($id);
-        if ($user->photo) {
+
+        // Detach all roles associated with the user
+        $user->roles()->detach();
+
+        // Check if the user has a photo
+        if ($user->photo)  {
+            // Get the path to the user's photo
             $photoPath = public_path($user->photo);
+
+            // Check if the photo file exists
             if (file_exists($photoPath)) {
+                // Delete the photo file
                 unlink($photoPath);
             }
         }
+
+        // Delete the user
         $user->delete();
-        return redirect()->back()->with('delete', 'ok');
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
     }
 
 }

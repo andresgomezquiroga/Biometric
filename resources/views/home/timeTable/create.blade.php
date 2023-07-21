@@ -15,26 +15,11 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                         <small>
                             {{ session('success') }}
-                        </small>
-                    </div>
-                @elseif(session('info'))
-                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                        <small>
-                            {{ session('info') }}
                         </small>
                     </div>
                 @endif
@@ -61,12 +46,28 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="Fecha_finalizacion">Fecha de finalización</label>
-                                <input type="date" class="form-control" id="Fecha_finalizacion" name="Fecha_finalizacion" value="{{ old('Fecha_finalizacion') }}">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="Fecha_finalizacion">Fecha de finalización</label>
+                                    <input type="date" class="form-control" id="Fecha_finalizacion" name="Fecha_finalizacion" value="{{ old('Fecha_finalizacion') }}">
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ficha_id">Seleccione una ficha</label>
+                                    <select class="form-control" id="ficha_id" name="ficha_id">
+                                        @foreach ($fichas as $ficha)
+                                            <option value="{{ $ficha->id_ficha }}">El codigo de la ficha: {{ $ficha->number_ficha }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Crear</button>

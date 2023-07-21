@@ -9,6 +9,9 @@ use App\Http\Controllers\HorariosController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\ExcusesController;
 use App\Http\Controllers\CompetenceController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +69,22 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
         Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+        // Rutas para los permisos
+        Route::get('/permission' , [PermissionController::class, 'index'])->name('permission.index');
+        Route::get('/permission/create' , [PermissionController::class , 'create'])->name('permission.create');
+        Route::post('/permission' , [PermissionController::class , 'store'])->name('permission.store');
+        Route::get('/permission/{id}/edit', [PermissionController::class, 'edit'])->name('permission.edit');
+        Route::put('/permission/{id}', [PermissionController::class, 'update'])->name('permission.update');
+        Route::delete('/permission/{id}' , [PermissionController::class , 'destroy'])->name('permission.destroy');
+
+        // Rutas para los roles
+        Route::get('/role' , [RoleController::class , 'index'])->name('role.index');
+        Route::get('/role/create' , [RoleController::class , 'create'])->name('role.create');
+        Route::post('/role/create' , [RoleController::class , 'store'])->name('role.store');
+        Route::get('/role/{id}/edit' , [RoleController::class , 'edit'])->name('role.edit');
+        Route::put('/role/{id}' , [RoleController::class , 'update'])->name('role.update');
+        Route::delete('/role/{id}' , [RoleController::class , 'destroy'])->name('role.destroy');
 
         Route::get('ficha', [FichaController::class, 'index'])->name('ficha.index');
         Route::get('ficha/create', [FichaController::class, 'create'])->name('ficha.create');

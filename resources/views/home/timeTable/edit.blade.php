@@ -18,16 +18,12 @@
                     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                         <small>{{ session('success') }}</small>
                     </div>
-                @elseif (session('info'))
-                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                        <small>{{ session('info') }}</small>
-                    </div>
                 @endif
 
-                <form action="{{ route('timeTable.update', $horarios->Id_timeTable) }}" method="POST">
+                <form action="{{ route('timeTable.update', ['timeTable' => $timeTable->id_timeTable]) }}" method="POST">
                     @csrf
                     @method('PUT')
-
+                    <input type="hidden" name="id_timeTable" value="{{ $timeTable->id_timeTable }}">
                     <div class="form-group">
                         <label>Jornada</label>
                         <select class="form-control" id="Jornada" name="Jornada">
@@ -46,6 +42,15 @@
                     <div class="form-group">
                         <label for="Fecha_finalizacion">Fecha de finalización</label>
                         <input type="date" class="form-control" id="Fecha_finalizacion" name="Fecha_finalizacion" value="{{ $horarios->Fecha_finalizacion }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ficha_id">Seleccione una ficha</label>
+                        <select class="form-control" id="ficha_id" name="ficha_id">
+                            @foreach ($fichas as $ficha)
+                                <option value="{{ $ficha->id_ficha }}">El codigo de la ficha: {{ $ficha->number_ficha }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -84,6 +89,14 @@
                     <input value="{{ $horarios->Fecha_finalizacion }}" class="form-control" readonly>
                 </div>
             </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="ficha_id">Ficha seleccionada:</label>
+                    <input value="{{ $horarios->ficha->number_ficha }}" class="form-control" readonly>
+                </div>
+            </div>
+
             <!-- /.card-body -->
         </div>
         <!-- /.card -->

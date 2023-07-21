@@ -15,5 +15,11 @@ class Horarios extends Model
         'Jornada',
         'Fecha_inicio',
         'Fecha_finalizacion',
+        'ficha_id'
     ];
+
+    public function ficha()
+    {
+        return $this->belongsTo(Ficha::class, 'ficha_id');
+    }
 }
