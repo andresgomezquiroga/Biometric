@@ -42,6 +42,8 @@ class ExcusesController extends Controller
             $excuse->save();
         }
 
+        //Excusas
+
         return redirect()->back()->with('success', 'Excuse creada exitosamente');
     }
 
