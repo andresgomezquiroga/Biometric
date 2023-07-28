@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date_start');
             $table->date('date_end');
             $table->unsignedBigInteger('programa_id')->nullable();
-            $table->foreign('programa_id')->references('id')->on('programas');
+            $table->foreign('programa_id')->references('id_program')->on('programas');
 
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('Fecha_inicio');
             $table->date('Fecha_finalizacion');
             $table->unsignedBigInteger('ficha_id')->nullable();
-            $table->foreign('ficha_id')->references('id')->on('fichas');
+            $table->foreign('ficha_id')->references('id_ficha')->on('fichas');
 
             $table->timestamps();
         });
