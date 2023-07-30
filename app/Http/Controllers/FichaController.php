@@ -5,17 +5,65 @@ namespace App\Http\Controllers;
 use App\Models\Ficha;
 use App\Models\Programa;
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class FichaController extends Controller
 {
+
     public function index()
     {
-        // Obtiene todas las fichas con sus respectivos programas de formación ......
-        $fichas = Ficha::with('programa')->get();
-
+        $user = auth()->user();
+    
+        // Si el usuario es instructor o administrador, obtiene todas las fichas con sus respectivos programas de formación
+        if ($user->hasRole(['Instructor', 'Administrador'])) {
+            $fichas = Ficha::with('programa')->get();
+        }
+        // Si el usuario es aprendiz, obtiene solamente las fichas relacionadas con el permiso específico
+        else if ($user->hasRole('Aprendiz')) {
+            $fichas = Ficha::whereHas('members', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->with('programa')->get();
+        }
+        // Si el usuario no tiene ningún rol reconocido, no se mostrará ninguna ficha
+        else {
+            $fichas = collect();
+        }
+    
         return view('home.ficha.index', compact('fichas'));
     }
 
+    public function add_members(Request $request)
+    {
+        $validatedData = $request->validate([
+            'documento' => 'required|numeric',
+            'ficha_id' => 'required|exists:fichas,id_ficha',
+        ]);
+    
+        $user = User::where('document_number', $validatedData['documento'])->first();
+    
+        if (!$user) {
+            return redirect()->back()->with('error', 'ok');
+        }
+    
+        $ficha = Ficha::findOrFail($validatedData['ficha_id']);
+    
+        // Asociar al usuario a la ficha
+        $ficha->members()->attach($user->id);
+    
+        return redirect()->back()->with('success', 'ok');
+    }
+    
+    public function index_members(Request $request, $fichaId)
+    {
+        $ficha = Ficha::findOrFail($fichaId);
+        
+    
+        // Obtener los integrantes de la ficha
+        $integrantes = $ficha->members;
+    
+        return view('home.ficha.index_members', compact('ficha','integrantes'));
+    }
     public function create()
     {
         $programas = Programa::all(); // Esto obtiene todos los programas de formación disponibles
@@ -79,4 +127,5 @@ class FichaController extends Controller
     
         return redirect()->route('ficha.index')->with('delete', 'ok');
     }
+
 }

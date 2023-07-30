@@ -92,6 +92,9 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('ficha/{ficha}/edit', [FichaController::class, 'edit'])->name('ficha.edit');
         Route::put('ficha/update', [FichaController::class, 'update'])->name('ficha.update');
         Route::delete('ficha/{ficha}', [FichaController::class, 'destroy'])->name('ficha.destroy');
+        Route::post('/add-members', [FichaController::class, 'add_members'])->name('ficha.add_members');
+        Route::get('/members_list/{fichaId}', [FichaController::class, 'index_members'])->name('ficha.members_list');
+
 
         Route::get('programa', [ProgramaController::class, 'index'])->name('programa.index');
         Route::get('programa/create', [ProgramaController::class, 'create'])->name('programa.create');

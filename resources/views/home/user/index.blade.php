@@ -23,6 +23,7 @@
                         </div>
                     @endif
                 </div>
+                
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table id="users" class="table table-bordered table-striped text-center">
@@ -75,12 +76,11 @@
                                     </td>
 
                                     <td>
-                                        <button class="btn btn-danger form-delete" data-id="{{ $user->id }}">Eliminar</button>
-                                        <form id="delete-form-{{ $user->id }}"
-                                            action="{{ route('user.destroy', $user->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                    <button class="btn btn-danger form-delete" data-id="{{$user->id}}">Eliminar</button>
+                                    <form id="delete-form-{{$user->id}}" action="{{ route('user.destroy', $user->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -112,8 +112,21 @@
 @endsection
 
 
+
+
 @section('js')
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('delete') == 'ok')
+<script>
+    Swal.fire(
+        'Eliminado correctamente!',
+        'Su Horario ha sido eliminado.',
+        'success'
+    )
+</script>
+@endif
 
 <script>
     $('.form-delete').click(function(e) {
@@ -122,7 +135,7 @@
         var id = $(this).data('id');
 
         Swal.fire({
-            title: '¿Estás seguro de eliminar el usuario?',
+            title: '¿Estás seguro de eliminar el horario?',
             text: '¡No podrás revertir esto!',
             icon: 'warning',
             showCancelButton: true,
@@ -137,17 +150,5 @@
         });
     });
 </script>
-
-@if (session('delete') == 'ok')
-<script>
-    $(document).ready(function() {
-        Swal.fire(
-            '¡Eliminado correctamente!',
-            'El usuario ha sido eliminado exitosamente.',
-            'success'
-        );
-    });
-</script>
-@endif
-
 @endsection
+

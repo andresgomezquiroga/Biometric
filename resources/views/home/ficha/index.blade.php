@@ -10,31 +10,38 @@
     <h1 class="text-center" style="font-size: 25px;">Listado de fichas</h1>
     <div id="fichas" class="row mt-5">
         @foreach ($fichas as $ficha)
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <img src="{{ asset('img/logo.jpg') }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                    <h5 class="my-3">Número de la ficha: {{ $ficha->number_ficha }}</h5>
-                    <p class="text-muted mb-1">Fecha de inicio: {{ $ficha->date_start }}</p>
-                    <p class="text-muted mb-1">Fecha de fin: {{ $ficha->date_end }}</p>
-                    <p class="text-muted mb-1">Programa de formación: {{ $ficha->programa ? $ficha->programa->name_program : 'No asignado' }}</p>
-                    <div class="mt-3">
-                        <a href="{{ route('ficha.edit', ['ficha' => $ficha->id_ficha]) }}" class="btn btn-primary">Editar</a>
-                        <button class="btn btn-danger form-delete" data-id="{{$ficha->id_ficha}}">Eliminar</button>
-                        <form id="delete-form-{{$ficha->id_ficha}}" action="{{ route('ficha.destroy', $ficha->id_ficha) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('img/logo.jpg') }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">Número de la ficha: {{ $ficha->number_ficha }}</h5>
+                        <p class="text-muted mb-1">Fecha de inicio: {{ $ficha->date_start }}</p>
+                        <p class="text-muted mb-1">Fecha de fin: {{ $ficha->date_end }}</p>
+                        <p class="text-muted mb-1">Programa de formación: {{ $ficha->programa ? $ficha->programa->name_program : 'No asignado' }}</p>
+                        <div class="mt-3">
+                            <a href="{{ route('ficha.edit', ['ficha' => $ficha->id_ficha]) }}" class="btn btn-primary">Editar</a>
+                            <button class="btn btn-danger form-delete" data-id="{{ $ficha->id_ficha }}">Eliminar</button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#agregarIntegranteModal-{{ $ficha->id_ficha }}">Agregar Integrante</button>
+                            <form id="delete-form-{{ $ficha->id_ficha }}" action="{{ route('ficha.destroy', $ficha->id_ficha) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Modal para agregar integrante -->
+            <div class="modal fade" id="agregarIntegranteModal-{{ $ficha->id_ficha }}" tabindex="-1" role="dialog" aria-labelledby="agregarIntegranteModalLabel" aria-hidden="true">
+                @include('home.ficha.index_members_modal', ['ficha' => $ficha])
+
+                <!-- Resto del contenido del modal -->
+            </div>
         @endforeach
     </div>
 </div>
 
 @endsection
-
 
 
 @section('js')
