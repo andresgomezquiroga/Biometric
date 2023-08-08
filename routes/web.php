@@ -74,9 +74,9 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('/permission' , [PermissionController::class, 'index'])->name('permission.index');
         Route::get('/permission/create' , [PermissionController::class , 'create'])->name('permission.create');
         Route::post('/permission' , [PermissionController::class , 'store'])->name('permission.store');
-        Route::get('/permission/{id}/edit', [PermissionController::class, 'edit'])->name('permission.edit');
-        Route::put('/permission/{id}', [PermissionController::class, 'update'])->name('permission.update');
-        Route::delete('/permission/{id}' , [PermissionController::class , 'destroy'])->name('permission.destroy');
+        Route::get('permissions/{id}/edit', [PermissionController::class , 'edit'])->name('permission.edit');
+        Route::put('/permissions/{id}' , [PermissionController::class , 'update'])->name('permission.update');
+        Route::delete('/permission/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
 
         // Rutas para los roles
         Route::get('/role' , [RoleController::class , 'index'])->name('role.index');
@@ -126,14 +126,13 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::put('excuse/{excuse}', [ExcusesController::class, 'update'])->name('excuse.update');
         Route::delete('excuse/{excuse}', [ExcusesController::class, 'destroy'])->name('excuse.destroy');
         Route::get('excuse/file/{filename}', [ExcusesController::class, 'viewFile'])->name('excuse.viewFile');
-        
+
         Route::get('competence', [CompetenceController::class, 'index'])->name('competence.index');
         Route::get('competence/create', [CompetenceController::class, 'create'])->name('competence.create');
         Route::post('competence', [CompetenceController::class, 'store'])->name('competence.store');
         Route::get('competence/{competence}/edit', [CompetenceController::class, 'edit'])->name('competence.edit');
         Route::put('competence/{competence}', [CompetenceController::class, 'update'])->name('competence.update');
         Route::delete('competence/{competence}', [CompetenceController::class, 'destroy'])->name('competence.destroy');
-        
-        
+
     });
 });

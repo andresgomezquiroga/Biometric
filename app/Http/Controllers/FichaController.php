@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 
+
 class FichaController extends Controller
 {
 
     public function index()
     {
         $user = auth()->user();
-    
+
         // Si el usuario es instructor o administrador, obtiene todas las fichas con sus respectivos programas de formación
         if ($user->hasRole(['Instructor', 'Administrador'])) {
             $fichas = Ficha::with('programa')->get();
@@ -29,7 +30,7 @@ class FichaController extends Controller
         else {
             $fichas = collect();
         }
-    
+
         return view('home.ficha.index', compact('fichas'));
     }
 
@@ -39,29 +40,29 @@ class FichaController extends Controller
             'documento' => 'required|numeric',
             'ficha_id' => 'required|exists:fichas,id_ficha',
         ]);
-    
+
         $user = User::where('document_number', $validatedData['documento'])->first();
-    
+
         if (!$user) {
             return redirect()->back()->with('error', 'ok');
         }
-    
+
         $ficha = Ficha::findOrFail($validatedData['ficha_id']);
-    
+
         // Asociar al usuario a la ficha
         $ficha->members()->attach($user->id);
-    
+
         return redirect()->back()->with('success', 'ok');
     }
-    
+
     public function index_members(Request $request, $fichaId)
     {
         $ficha = Ficha::findOrFail($fichaId);
-        
-    
+
+
         // Obtener los integrantes de la ficha
         $integrantes = $ficha->members;
-    
+
         return view('home.ficha.index_members', compact('ficha','integrantes'));
     }
     public function create()
@@ -124,7 +125,7 @@ class FichaController extends Controller
     public function destroy(Ficha $ficha)
     {
         $ficha->delete();
-    
+
         return redirect()->route('ficha.index')->with('delete', 'ok');
     }
 

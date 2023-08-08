@@ -415,7 +415,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- Dashboard js -->
 <script src="{{ asset('js/dashboard.js') }}"></script>
-<script src="{{ asset('js/search_ficha.js') }}"></script>
 
     <!-- Dashboard js -->
     @yield('js')

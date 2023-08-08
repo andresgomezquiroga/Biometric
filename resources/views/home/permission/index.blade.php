@@ -22,34 +22,39 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <table id="attendance" class="table table-bordered table-striped text-center">
+                    <table id="permissions" class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
                                 <th>Nombre del permiso</th>
+                                <th>Grupo</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($permissions as $permission)
-                                <tr>
-                                    <td>{{ $permission->name }}</td> <!-- Aquí se corrigió el cierre de la etiqueta -->
-                                    <td>
-                                        <a href="{{ route('permission.edit', $permission->id) }}" class="btn btn-primary">Editar</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger form-delete" data-id="{{$permission->id}}">Eliminar</button>
-                                        <form id="delete-form-{{$permission->id}}" action="{{ route('permission.destroy', $permission->id) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach ($permissions as $permission)
+                            <tr>
+                                <td>{{ $permission['name'] }}</td>
+                                <td>{{ $permission['group'] }}</td>
+                                <td>
+                                    <a href="{{ route('permission.edit', $permission['name']) }}" class="btn btn-primary">Editar</a>
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-danger form-delete" data-id="{{ $permission['id'] }}">Eliminar</button>
+                                    <form id="delete-form-{{ $permission['id'] }}" action="{{ route('permission.destroy', $permission['id']) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th>Nombre del permiso</th>
+                                <th>Grupo</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -69,14 +74,15 @@
 <script>
     Swal.fire(
         'Eliminado correctamente!',
-        'Su permiso ha sido eliminada.',
+        'Su permiso ha sido eliminado.',
         'success'
     )
 </script>
 @endif
 
 <script>
-    $('.form-delete').click(function(e) {
+$(document).ready(function() {
+    $('.form-delete').click('submit', function(e) {
         e.preventDefault();
 
         var id = $(this).data('id');
@@ -96,5 +102,6 @@
             }
         });
     });
+});
 </script>
 @endsection

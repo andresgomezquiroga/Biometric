@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
+
 class PermissionController extends Controller
 {
     /**
@@ -13,84 +14,130 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        return view('home.permission.index' , compact('permissions'));
+
+        return view('home.permission.index', compact('permissions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function editProfile () {
+        return view('home.permission.edit');
+    }
+
     public function create()
     {
-        return view ('home.permission.create');
+        $permissionGroups = $this->getPermissionGroups();
+        $groupedPermissions = $this->getGroupedPermissions();
+        return view('home.permission.create', compact('permissionGroups', 'groupedPermissions'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        $group = $request->input('group');
+        $permissionName = $request->input('permission');
 
-        $permission = new Permission();
+        $permission = $this->getPermissionByNameAndGroup($permissionName, $group);
 
-        $request->validate([
-            'name' => 'required|unique:permissions,name',
-        ]);
+        if (!$permission) {
+            // Aquí se crea el permiso si no existe
+            $permission = Permission::create(['name' => $permissionName, 'group' => $group]);
+        }
 
-        $permission->name = $request->name;
-        $permission->save();
+        // Agregar el permiso al grupo
+        $selectedPermissions = session()->get('selected_permissions', []);
+        $selectedPermissions[] = $permission->toArray();
+        session()->put('selected_permissions', $selectedPermissions);
 
-        return redirect()->back()->with('success', 'Permiso creado exitosamente.');
+        return redirect()->back()->with('success', 'Permiso creado y asignado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    protected function getGroupedPermissions()
     {
-        //
+        return [
+            'Fichas' => [
+                ['name' => 'ficha.index', 'label' => 'Listar fichas'],
+                ['name' => 'ficha.create', 'label' => 'Crear ficha'],
+            ],
+            // Otros grupos y permisos...
+            'Usuarios' => [
+                ['name' => 'user.index', 'label' => 'Listar usuarios'],
+                ['name' => 'user.create', 'label' => 'Crear usuario'],
+            ],
+            'Programas' => [
+                ['name' => 'program.index', 'label' => 'Listar programas'],
+                ['name' => 'program.create', 'label' => 'Crear programa'],
+            ],
+            'Roles' => [
+                ['name' => 'role.index', 'label' => 'Listar roles'],
+                ['name' => 'role.create', 'label' => 'Crear rol'],
+            ],
+            'Asistencias' => [
+                ['name' => 'attendance.index', 'label' => 'Listar asistencias'],
+                ['name' => 'attendance.create', 'label' => 'Crear asistencia'],
+            ],
+            'Excusas' => [
+                ['name' => 'excuse.index', 'label' => 'Listar excusas'],
+                ['name' => 'excuse.create', 'label' => 'Crear excusa'],
+            ],
+            'Horarios' => [  // Cambia uno de los 'Horarios' a otro nombre
+                ['name' => 'timeTable.index', 'label' => 'Listar horarios'],
+                ['name' => 'timeTable.create', 'label' => 'Crear horario'],
+            ],
+            'Competencias' => [
+                ['name' => 'competence.index', 'label' => 'Listar competencias'],
+                ['name' => 'competence.create', 'label' => 'Crear competencia'],
+            ]
+        ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    protected function getPermissionGroups()
+    {
+        // Devuelve la lista de grupos de permisos
+        return ['Fichas', 'Horarios', 'Usuarios', 'Programas', 'Roles', 'Asistencias', 'Excusas', 'Horarios', 'Competencias'];
+    }
+
+    protected function getPermissionByNameAndGroup($name, $group)
+    {
+        // Busca y devuelve el permiso basado en el nombre y el grupo
+        return Permission::where('name', $name)->where('group', $group)->first();
+    }
+
+    public function edit($id)
     {
         $permission = Permission::findOrFail($id);
         return view('home.permission.edit', compact('permission'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update($id)
     {
         $permission = Permission::findOrFail($id);
 
-        $request->validate([
-            'name' => [
-                'required',
-                'unique:permissions,name,' . $permission->id,
-            ],
-        ]);
+        // Actualizamos la información del permiso si es necesario
 
-        $permission->name = $request->name;
+        $permission->save();
 
-        // Check if the permissions have been changed
-        if ($permission->isDirty('name')) {
-            $permission->save();
-            return redirect()->back()->with('success', 'Permiso actualizado exitosamente.');
-        } else {
-            return redirect()->back()->with('info', 'No se han realizado cambios.');
-        }
+        return redirect()->back()->with('success', 'Permiso actualizado exitosamente.');
     }
+
+
+
+
+
+    /**
+     * Display the specified resource.
+     */
+    /*public function show(string $id)
+    {
+        //
+    }*/
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $permission = Permission::findOrFail($id);
         $permission->delete();
+
         return redirect()->back()->with('delete', 'ok');
     }
+
 }

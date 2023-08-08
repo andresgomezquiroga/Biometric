@@ -27,6 +27,7 @@
                             <tr>
                                 <th>Nombre del rol</th>
                                 <th>Permisos del rol</th>
+                                <th>Grupo del permiso</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
@@ -37,7 +38,11 @@
                                     <td>{{ $role->name }}</td> <!-- Aquí se corrigió el cierre de la etiqueta -->
                                     <td>
                                         @foreach ($role->permissions as $permission)
-                                            {{ $permission->name }},
+                                            {{ $permission->name }} -
+                                        @endforeach
+                                    </td>
+                                    <td>@foreach($role->permissions as $permission)
+                                            {{ $permission->group }}
                                         @endforeach
                                     </td>
                                     <td>
@@ -57,6 +62,7 @@
                             <tr>
                                 <th>Nombre del rol</th>
                                 <th>Permisos del rol</th>
+                                <th>Grupo del permiso</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>

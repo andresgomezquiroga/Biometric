@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Validator;
+
 
 
 
@@ -62,7 +61,7 @@ class UserController extends Controller
 
         // Si los datos son diferentes se actualiza
         if ($user->isDirty()){
-            $user->update();
+            $user->create();
             return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
         }else {
             return redirect()->back()->with('info', 'No se realizó ninguna actualización.');
@@ -74,12 +73,12 @@ class UserController extends Controller
     {
         $users = User::all();
         $userRoles = [];
-    
+
         foreach ($users as $user) {
             $roles = $user->roles ? $user->roles->pluck('name') : collect(); // Verifica si $user->roles es null y, en ese caso, crea una colección vacía
             $userRoles[$user->id] = $roles->implode(', ');
         }
-    
+
         return view('home.user.index', compact('users'))->with('userRoles', $userRoles);
     }
     public function create() {
@@ -99,9 +98,9 @@ class UserController extends Controller
             'roles' => 'required|array|min:1',
             'roles.*' => 'exists:roles,id',
         ]);
-    
+
         $user = new User();
-    
+
         $user->first_name = $request->post('first_name');
         $user->last_name = $request->post('last_name');
         $user->age = $request->post('age');
@@ -111,11 +110,11 @@ class UserController extends Controller
         $user->email = $request->post('email');
         $user->password = Hash::make($request->post('document_number')); // Usar Hash::make para generar el hash de la contraseña
         $user->status = 'ACTIVE';
-    
+
         $user->save();
-    
+
         $user->assignRole($request->input('roles')); // Usar assignRole para asignar roles al usuario
-    
+
         return redirect()->back()->with('success', 'Usuario creado correctamente.');
     }
     public function show(string $id) {
