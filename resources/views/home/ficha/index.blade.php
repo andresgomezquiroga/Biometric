@@ -20,9 +20,16 @@
                         <p class="text-muted mb-1">Fecha de fin: {{ $ficha->date_end }}</p>
                         <p class="text-muted mb-1">Programa de formación: {{ $ficha->programa ? $ficha->programa->name_program : 'No asignado' }}</p>
                         <div class="mt-3">
+                            @if(auth()->user()->hasRole('Administrador'))
                             <a href="{{ route('ficha.edit', ['ficha' => $ficha->id_ficha]) }}" class="btn btn-primary">Editar</a>
                             <button class="btn btn-danger form-delete" data-id="{{ $ficha->id_ficha }}">Eliminar</button>
+                            @endif
+                            @if(auth()->user()->hasAnyRole(['Aprendiz', 'Instructor']))
+                            <a href="{{ route('ficha.members_list', ['fichaId' => $ficha->id_ficha]) }}" class="btn btn-secondary">Visualizar integrantes</a>
+                            @endif
+                            @if(auth()->user()->hasRole('Administrador'))
                             <button class="btn btn-success" data-toggle="modal" data-target="#agregarIntegranteModal-{{ $ficha->id_ficha }}">Agregar Integrante</button>
+                            @endif
                             <form id="delete-form-{{ $ficha->id_ficha }}" action="{{ route('ficha.destroy', $ficha->id_ficha) }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
@@ -36,7 +43,6 @@
             <div class="modal fade" id="agregarIntegranteModal-{{ $ficha->id_ficha }}" tabindex="-1" role="dialog" aria-labelledby="agregarIntegranteModalLabel" aria-hidden="true">
                 @include('home.ficha.index_members_modal', ['ficha' => $ficha])
 
-                <!-- Resto del contenido del modal -->
             </div>
         @endforeach
     </div>
@@ -83,17 +89,5 @@
 </script>
 
 @endif
-
-@if(session('error_permission') == 'ok')
-        <script>
-            Swal.fire({
-                icon: 'warning',
-                title: 'Acceso denegado',
-                text: 'No tienes permiso para ver esta ficha',
-                confirmButtonText: 'Entendido'
-            });
-        </script>
-@endif
-
 
 @endsection

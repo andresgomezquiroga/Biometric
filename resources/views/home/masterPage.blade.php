@@ -331,6 +331,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
+                        @if(auth()->user()->hasRole('Administrador'))
                         <span class="segurity">Seguridad</span>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -379,6 +380,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+                        @endif
                         
                     </ul>
                 </nav>

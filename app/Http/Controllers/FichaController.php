@@ -16,10 +16,6 @@ class FichaController extends Controller
     {
         $user = auth()->user();
     
-        if (!$user->hasPermissionTo('ficha.index')) {
-            return redirect()->route('dashboard')->with('error_permission', 'ok');
-        }
-    
         // Si el usuario es instructor o administrador, obtiene todas las fichas con sus programas de formación
         if ($user->hasRole(['Instructor', 'Administrador'])) {
             $fichas = Ficha::with('programa')->get();
@@ -30,6 +26,7 @@ class FichaController extends Controller
                 $query->where('user_id', $user->id);
             })->with('programa')->get();
         }
+
         // Si el usuario no tiene ningún rol reconocido, no se mostrará ninguna ficha
         else {
             $fichas = collect();
