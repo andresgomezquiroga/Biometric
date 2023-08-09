@@ -7,6 +7,7 @@
 @section('title_content', 'Listado de fichas')
 
 <div class="container py-5">
+
     <h1 class="text-center" style="font-size: 25px;">Listado de fichas</h1>
     <div id="fichas" class="row mt-5">
         @foreach ($fichas as $ficha)
@@ -80,6 +81,19 @@
         );
     });
 </script>
+
 @endif
+
+@if(session('error_permission') == 'ok')
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Acceso denegado',
+                text: 'No tienes permiso para ver esta ficha',
+                confirmButtonText: 'Entendido'
+            });
+        </script>
+@endif
+
 
 @endsection

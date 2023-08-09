@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Permisos del rol:</label>
+                        <label>Grupos ----------------- Permisos:</label>
                         <div class="row">
                             <div class="col-md-4">
                                 <ul>
@@ -53,7 +53,7 @@
                                             <div>
                                                 <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
                                                 @if($role->permissions->contains($permission->id)) checked @endif>
-                                                <label>{{ $permission->name }}</label>
+                                                <label for="checkbox_{{ $permission->id }}">{{ $permission->group }} <span class="badge">-------------->>  {{ $permission->name }}</span></label>
                                             </div>
                                         </li>
                                     @endforeach

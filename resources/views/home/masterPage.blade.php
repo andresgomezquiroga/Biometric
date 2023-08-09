@@ -136,104 +136,120 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
+                            @can('user.index') <!-- Verificar si el usuario tiene permiso para listar usuarios -->
                             <a href="#" class="nav-link">
-                              <i class="nav-icon fas fa-user"></i>
-                              <p>
-                                Usuarios
-                                <i class="right fas fa-angle-left"></i>
-                              </p>
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Usuarios
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
                             </a>
                             <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                <a href="{{ route('user.index') }}" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Listar usuarios</p>
-                                </a>
-                              </li>
-                              <li class="nav-item">
-                                <a href="{{ route('user.create')}}" class="nav-link">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>Crear un usuario</p>
-                                </a>
-                              </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('user.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listar usuarios</p>
+                                    </a>
+                                </li>
+                                @can('user.create') <!-- Verificar si el usuario tiene permiso para crear usuarios -->
+                                <li class="nav-item">
+                                    <a href="{{ route('user.create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Crear un usuario</p>
+                                    </a>
+                                </li>
+                                @endcan
                             </ul>
-                          </li>
+                            @endcan
+                        </li>
                         <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-file-alt"></i>
-                            <p>
-                            Fichas
-                            <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                            <a href="{{ route('ficha.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Listar fichas</p>
-                            </a>
-                            </li>
-                            <li class="nav-item">
-                            <a href="{{ route('ficha.create')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Crear una ficha</p>
-                            </a>
-                            </li>
-                        </ul>
+                            @can('ficha.index')
+                                <a href="{{ route('ficha.index') }}" class="nav-link">
+                                    <i class="nav-icon far fa-file-alt"></i>
+                                    <p>
+                                        Fichas
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                            @endcan
+                            <ul class="nav nav-treeview">
+                                @can('ficha.index')
+                                    <li class="nav-item">
+                                        <a href="{{ route('ficha.index') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Listar fichas</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('ficha.create')
+                                    <li class="nav-item">
+                                        <a href="{{ route('ficha.create')}}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Crear una ficha</p>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
                         </li>
 
                         <li class="nav-item">
+                            @can('program.index') <!-- Verificar si el usuario tiene permiso para listar programas -->
                             <a href="#" class="nav-link">
                                 <i class="fas fa-book nav-icon"></i>
                                 <p>
-                                Programas
-                                <i class="right fas fa-angle-left"></i>
+                                    Programas
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                <a href="{{ route('programa.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listar Programas</p>
-                                </a>
+                                    <a href="{{ route('programa.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listar Programas</p>
+                                    </a>
                                 </li>
+                                @can('program.create')
                                 <li class="nav-item">
-                                <a href="{{ route('programa.create')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Crear un Programa</p>
-                                </a>
+                                    <a href="{{ route('programa.create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Crear un Programa</p>
+                                    </a>
                                 </li>
+                                @endcan
                             </ul>
-
-
+                            @endcan
                         </li>
-
-                        <!-- enlace de asistencias-->
+            
                         <li class="nav-item">
+                            @can('attendance.index') <!-- Verificar si el usuario tiene permiso para listar asistencias -->
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-check"></i>
                                 <p>
-                                Asistencia
-                                <i class="right fas fa-angle-left"></i>
+                                    Asistencia
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                <a href="{{route('attendance.index')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Listar asistencias</p>
-                                </a>
+                                    <a href="{{ route('attendance.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listar asistencias</p>
+                                    </a>
                                 </li>
+                                @can('attendance.create') <!-- Verificar si el usuario tiene permiso para crear asistencias -->
                                 <li class="nav-item">
-                                <a href="{{ route('attendance.create')}}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Crear una asistencias</p>
-                                </a>
+                                    <a href="{{ route('attendance.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Crear una asistencia</p>
+                                    </a>
                                 </li>
+                                @endcan
                             </ul>
+                            @endcan
                         </li>
 
                         <li class="nav-item">
+                            @can('excuse.index') <!-- Verificar si el usuario tiene permiso para listar excusas -->
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-envelope"></i>
                                 <p>
@@ -248,16 +264,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Listar excusas</p>
                                     </a>
                                 </li>
+                                @can('excuse.create') <!-- Verificar si el usuario tiene permiso para crear excusas -->
                                 <li class="nav-item">
                                     <a href="{{ route('excuse.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Crear una excusa</p>
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
+                            @endcan
                         </li>
 
                         <li class="nav-item">
+                            @can('timeTable.index') 
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-calendar"></i>
                                 <p>
@@ -272,16 +292,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Listar horarios</p>
                                     </a>
                                 </li>
+                                @can('timeTable.create') <!-- Verificar si el usuario tiene permiso para crear horarios -->
                                 <li class="nav-item">
                                     <a href="{{ route('timeTable.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Crear un horarios</p>
+                                        <p>Crear un horario</p>
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
+                            @endcan
                         </li>
 
                         <li class="nav-item bordeo">
+                            @can('competence.index') <!-- Verificar si el usuario tiene permiso para listar competencias -->
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-id-card"></i>
                                 <p>
@@ -296,13 +320,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Listar competencias</p>
                                     </a>
                                 </li>
+                                @can('competence.create') <!-- Verificar si el usuario tiene permiso para crear competencias -->
                                 <li class="nav-item">
                                     <a href="{{ route('competence.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Crear una competencia</p>
                                     </a>
                                 </li>
+                                @endcan
                             </ul>
+                            @endcan
                         </li>
                         <span class="segurity">Seguridad</span>
                         <li class="nav-item">

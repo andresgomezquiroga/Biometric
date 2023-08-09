@@ -15,8 +15,12 @@ class FichaController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-        // Si el usuario es instructor o administrador, obtiene todas las fichas con sus respectivos programas de formación
+    
+        if (!$user->hasPermissionTo('ficha.index')) {
+            return redirect()->route('dashboard')->with('error_permission', 'ok');
+        }
+    
+        // Si el usuario es instructor o administrador, obtiene todas las fichas con sus programas de formación
         if ($user->hasRole(['Instructor', 'Administrador'])) {
             $fichas = Ficha::with('programa')->get();
         }
@@ -30,10 +34,9 @@ class FichaController extends Controller
         else {
             $fichas = collect();
         }
-
+    
         return view('home.ficha.index', compact('fichas'));
     }
-
     public function add_members(Request $request)
     {
         $validatedData = $request->validate([
