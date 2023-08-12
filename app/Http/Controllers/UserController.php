@@ -76,7 +76,7 @@ class UserController extends Controller
 
         foreach ($users as $user) {
             $roles = $user->roles ? $user->roles->pluck('name') : collect(); // Verifica si $user->roles es null y, en ese caso, crea una colección vacía
-            $userRoles[$user->id] = $roles->implode(', ');
+            $userRoles[$user->id] = $roles->implode(', '); // Agrega los roles a un array asociativo con el id del usuario como índice
         }
 
         return view('home.user.index', compact('users'))->with('userRoles', $userRoles);
@@ -214,7 +214,7 @@ class UserController extends Controller
         $user->delete();
 
         // Redirect back with success message
-        return redirect()->back()->with('delete', 'ok');
+        return redirect()->back()->with('destroy_user', 'ok_user');
     }
 
 }

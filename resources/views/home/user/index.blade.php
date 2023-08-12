@@ -41,7 +41,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                        @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                     <td>{{ $user->document_number }}</td>
@@ -52,7 +52,11 @@
                                         <td><span class="badge badge-danger" id="estiloStatus">Inactivo</span></td>
                                     @endif
 
-                                    <td>{{ $userRoles[$user->id] }}</td>
+                                    <td>
+                                        <span class="badge badge-primary">
+                                            {{ $userRoles[$user->id] }}
+                                        </span>
+                                    </td>
 
                                     @if ($user->photo == null)
                                         <td>
@@ -67,8 +71,7 @@
                                     @endif
 
                                     <td>
-                                        <a href="{{ route('user.show', $user->id) }}"
-                                            class="btn btn-secondary">Mostrar</a>
+                                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-secondary">Mostrar</a>
                                     </td>
 
                                     <td>
@@ -76,14 +79,14 @@
                                     </td>
 
                                     <td>
-                                    <button class="btn btn-danger form-delete" data-id="{{$user->id}}">Eliminar</button>
-                                    <form id="delete-form-{{$user->id}}" action="{{ route('user.destroy', $user->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
+                                        <button class="btn btn-danger form-delete" data-id="{{$user->id}}">Eliminar</button>
+                                        <form id="delete-form-{{$user->id}}" action="{{ route('user.destroy', $user->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
@@ -118,11 +121,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if (session('delete') == 'ok')
+@if (session('destroy_user') == 'ok_user')
 <script>
     Swal.fire(
         'Eliminado correctamente!',
-        'Su Horario ha sido eliminado.',
+        'Su Usuario ha sido eliminado.',
         'success'
     )
 </script>
@@ -135,7 +138,7 @@
         var id = $(this).data('id');
 
         Swal.fire({
-            title: '¿Estás seguro de eliminar el horario?',
+            title: '¿Estás seguro de eliminar el Usuario?',
             text: '¡No podrás revertir esto!',
             icon: 'warning',
             showCancelButton: true,
