@@ -53,9 +53,11 @@
                                     @endif
 
                                     <td>
-                                        <span class="badge badge-primary">
+                                        @if ($userRoles[$user->id] === 'Administrador')
+                                            <span class="badge badge-primary">{{ $userRoles[$user->id] }}</span>
+                                        @else
                                             {{ $userRoles[$user->id] }}
-                                        </span>
+                                        @endif
                                     </td>
 
                                     @if ($user->photo == null)

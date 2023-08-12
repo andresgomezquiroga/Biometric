@@ -36,6 +36,8 @@
                             <tr>
                                 <td>{{ $permission['name'] }}</td>
                                 <td>{{ $permission['group'] }}</td>
+
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <td>
                                     <a href="{{ route('permission.edit', $permission['name']) }}" class="btn btn-primary">Editar</a>
                                 </td>
@@ -47,6 +49,7 @@
                                         @method('DELETE')
                                     </form>
                                 </td>
+                                @endif
 
                             </tr>
                         @endforeach

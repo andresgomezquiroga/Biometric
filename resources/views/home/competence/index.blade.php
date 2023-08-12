@@ -42,6 +42,8 @@
                                     </td>
                                     <td>{{ $competence->ficha ? $competence->ficha->number_ficha : 'No encontrado la ficha' }}</td>
                                     <th>{{ $competence->description_competence }}</th>
+
+                                    @if (auth()->user()->hasRole('Administrador'))
                                     <td>
                                         <a href="{{ route('competence.edit', $competence->id_competence) }}" class="btn btn-primary">Editar</a>
                                     </td>
@@ -52,6 +54,7 @@
                                             @method('DELETE')
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
