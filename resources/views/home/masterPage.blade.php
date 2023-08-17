@@ -136,7 +136,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            @can('user.index') <!-- Verificar si el usuario tiene permiso para listar usuarios -->
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
@@ -151,16 +150,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>Listar usuarios</p>
                                     </a>
                                 </li>
-                                @can('user.create') <!-- Verificar si el usuario tiene permiso para crear usuarios -->
                                 <li class="nav-item">
                                     <a href="{{ route('user.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Crear un usuario</p>
                                     </a>
                                 </li>
-                                @endcan
                             </ul>
-                            @endcan
                         </li>
                         <li class="nav-item">
                             @can('ficha.index')
@@ -191,7 +187,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 @endcan
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             @can('program.index') <!-- Verificar si el usuario tiene permiso para listar programas -->
                             <a href="#" class="nav-link">
@@ -219,7 +214,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-            
+
                         <li class="nav-item">
                             @can('attendance.index') <!-- Verificar si el usuario tiene permiso para listar asistencias -->
                             <a href="#" class="nav-link">
@@ -277,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            @can('timeTable.index') 
+                            @can('timeTable.index')
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-calendar"></i>
                                 <p>
@@ -331,7 +326,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-                        @if(auth()->user()->hasRole('Administrador'))
+
                         <span class="segurity">Seguridad</span>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -380,8 +375,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-                        @endif
-                        
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

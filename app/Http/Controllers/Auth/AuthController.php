@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-        
+
             if ($user->status === 'ACTIVE') {
                 View::share('user', $user);
                 return redirect()->route('dashboard');
@@ -44,7 +44,7 @@ class AuthController extends Controller
                 return redirect()->back()->with('info', 'El usuario no puede ingresar porque esta inactivo!');
             }
         }
-        
+
 
 
         return back()->withErrors(['invalid_credentials' => 'Email y contraseña son incorrecta'])->withInput();
@@ -88,6 +88,10 @@ class AuthController extends Controller
             'email' => $user->email,
             'password' => $request->post('password')
         ]);
+
+        if ($user->hasRole('Administrador')){
+         return redirect()->back()->with('success', 'Rol administrador ya creado');
+        }
 
         return redirect()->route('login')->with('success', 'Se ha registrado el usuario correctamente');
 
