@@ -41,6 +41,7 @@
                                 <td>{{$asistencia->admission_time}}</td>
                                 <td>{{$asistencia->comments}}</td>
 
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <td>
                                     <a href="{{ route('attendance.edit', $asistencia->id_attendance) }}" class="btn btn-primary">Editar</a>
                                 </td>
@@ -52,6 +53,7 @@
                                         @method('DELETE')
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

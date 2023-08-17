@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Grupos ----------------- Permisos:</label>
+                        <label>Acciones:</label>
                         <div class="row">
                             <div class="col-md-4">
                                 <ul>
@@ -47,7 +47,7 @@
                                         <li>
                                             <div class="icheck-primary d-inline">
                                                 <input type="checkbox" id="checkbox_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}">
-                                                <label for="checkbox_{{ $permission->id }}">{{ $permission->group }} <span class="badge">-------------->>  {{ $permission->name }}</span></label>
+                                                <label for="checkbox_{{ $permission->id }}">{{ $permission->group }} <span class="badge"></span></label>
                                             </div>
                                         </li>
                                     @endforeach

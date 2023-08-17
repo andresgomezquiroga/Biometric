@@ -36,11 +36,11 @@ class PermissionController extends Controller
         $permission = $this->getPermissionByNameAndGroup($permissionName, $group);
 
         if (!$permission) {
-            // Aquí se crea el permiso si no existe
+            // se crea el permiso si no existe
             $permission = Permission::create(['name' => $permissionName, 'group' => $group]);
         }
 
-        // Agregar el permiso al grupo
+        // Agregamos el permiso al grupo
         $selectedPermissions = session()->get('selected_permissions', []);
         $selectedPermissions[] = $permission->toArray();
         session()->put('selected_permissions', $selectedPermissions);
@@ -116,10 +116,6 @@ class PermissionController extends Controller
 
         return redirect()->back()->with('success', 'Permiso actualizado exitosamente.');
     }
-
-
-
-
 
     /**
      * Display the specified resource.

@@ -46,6 +46,7 @@
                     <td>{{$horario->Fecha_finalizacion}}</td>
                     <td>{{ $horario->ficha ? $horario->ficha->number_ficha : 'No encontrado codigo de la ficha' }}</td>
 
+                    @if (auth()->user()->hasRole('Administrador'))
                     <td>
                       <a href="{{route('timeTable.edit', $horario->Id_timeTable)}}" class="btn btn-primary">Editar</a>
                     </td>
@@ -57,6 +58,7 @@
                             @method('DELETE')
                         </form>
                     </td>
+                    @endif
                   </tr>
                   @endforeach
                 </tbody>

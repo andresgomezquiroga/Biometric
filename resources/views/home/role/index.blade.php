@@ -42,9 +42,10 @@
                                         @endforeach
                                     </td>
                                     <td>@foreach($role->permissions as $permission)
-                                            {{ $permission->group }}
+                                            {{ $permission->group }} -
                                         @endforeach
                                     </td>
+                                    @if (auth()->user()->hasRole('Administrador'))
                                     <td>
                                         <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary">Editar</a>
                                     </td>
@@ -55,6 +56,7 @@
                                             @method('DELETE')
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

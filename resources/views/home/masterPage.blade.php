@@ -215,6 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @endcan
                         </li>
 
+
                         <li class="nav-item">
                             @can('attendance.index') <!-- Verificar si el usuario tiene permiso para listar asistencias -->
                             <a href="#" class="nav-link">
@@ -273,6 +274,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             @can('timeTable.index')
+                            @can('timeTable.index')
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-calendar"></i>
                                 <p>
@@ -327,6 +329,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @endcan
                         </li>
 
+
                         <span class="segurity">Seguridad</span>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -375,6 +378,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+
 
                     </ul>
                 </nav>

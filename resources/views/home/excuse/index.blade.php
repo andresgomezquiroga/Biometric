@@ -50,6 +50,7 @@
                                             @endif
                                         </a>
                                     </td>
+                                    @if (auth()->user()->hasRole('Administrador'))
                                     <td>
                                         <a href="{{ route('excuse.edit', $excuse->id_excuse) }}" class="btn btn-primary">Editar</a>
                                     </td>
@@ -60,6 +61,7 @@
                                             @method('DELETE')
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

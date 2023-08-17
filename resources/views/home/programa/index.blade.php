@@ -41,6 +41,8 @@
                                 <td>{{ $programa->program_code }}</td>
                                 <td>{{ $programa->name_program }}</td>
 
+                                @if (auth()->user()->hasRole('Administrador'))
+
                                 <td>
                                     <a href="{{ route('programa.edit', $programa->id_program) }}" class="btn btn-primary">Editar</a>
                                 </td>
@@ -52,6 +54,7 @@
                                         @method('DELETE')
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

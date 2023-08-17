@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -83,6 +86,15 @@ class AuthController extends Controller
         $user->status = 'ACTIVE';
 
         $user->save();
+
+        // Asignar el rol "Administrador"
+        $user->assignRole('Administrador');
+
+        // Obtener los permisos predefinidos y asignarlos al usuario
+        $permissions = Permission::pluck('name')->toArray();
+        $user->syncPermissions($permissions);
+
+
 
         session([
             'email' => $user->email,
