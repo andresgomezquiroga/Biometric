@@ -44,6 +44,8 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'competence.create', 'group' => 'Crear competence']);
         Permission::create(['name' => 'permission.index', 'group' => 'Listar permission']);
         Permission::create(['name' => 'permission.create', 'group' => 'Crear permission']);
+        Permission::create(['name' => 'timeTable.index', 'group' => 'Crear horario']);
+        Permission::create(['name' => 'timeTable.create', 'group' => 'Crear horario']);
         
         $admin->permissions()->attach(Permission::all());
         

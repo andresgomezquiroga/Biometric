@@ -143,7 +143,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            @endcan
                             <ul class="nav nav-treeview">
+                                @can('user.index')
                                 <li class="nav-item">
                                     <a href="{{ route('user.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -158,6 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
                             @can('ficha.index')
                                 <a href="{{ route('ficha.index') }}" class="nav-link">
@@ -214,7 +217,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-
 
                         <li class="nav-item">
                             @can('attendance.index') <!-- Verificar si el usuario tiene permiso para listar asistencias -->
@@ -274,7 +276,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             @can('timeTable.index')
-                            @can('timeTable.index')
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-calendar"></i>
                                 <p>
@@ -329,7 +330,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @endcan
                         </li>
 
-
                         <span class="segurity">Seguridad</span>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -378,7 +378,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
-
 
                     </ul>
                 </nav>

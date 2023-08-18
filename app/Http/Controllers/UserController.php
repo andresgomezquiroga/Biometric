@@ -40,7 +40,7 @@ class UserController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-
+        
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->age = $request->age;
@@ -49,6 +49,7 @@ class UserController extends Controller
         $user->document_number = $request->document_number;
         $user->email = $request->email;
         $user->password = $request->password;
+        
 
         // Validar la foto
         if ($request->hasFile('photo')) {
@@ -57,11 +58,13 @@ class UserController extends Controller
             $destinationPath = 'img/photo';
             $photo->move(public_path($destinationPath), $filename);
             $user->photo = $destinationPath . '/' . $filename;
+
+            return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
         }
 
         // Si los datos son diferentes se actualiza
         if ($user->isDirty()){
-            $user->create();
+            $user->update();
             return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
         }else {
             return redirect()->back()->with('info', 'No se realizó ninguna actualización.');
