@@ -134,7 +134,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        
                         <li class="nav-item">
                             @can('user.index')
                             <a href="#" class="nav-link">
@@ -144,7 +143,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            @endcan
                             <ul class="nav nav-treeview">
+                                @can('user.index')
                                 <li class="nav-item">
                                     <a href="{{ route('user.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -160,9 +161,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 @endcan
-
                             </ul>
                         </li>
+                        
                         <li class="nav-item">
                             @can('ficha.index')
                                 <a href="{{ route('ficha.index') }}" class="nav-link">
@@ -172,8 +173,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                            
+                            @endcan
                             <ul class="nav nav-treeview">
+                                @can('ficha.index')
                                     <li class="nav-item">
                                         <a href="{{ route('ficha.index') }}" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
@@ -191,9 +193,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 @endcan
                             </ul>
                         </li>
+                        
 
-
-
+                        
                         <li class="nav-item">
                             @can('program.index') <!-- Verificar si el usuario tiene permiso para listar programas -->
                             <a href="#" class="nav-link">
@@ -221,9 +223,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
+                        
 
-
-
+                        
                         <li class="nav-item">
                             @can('attendance.index') <!-- Verificar si el usuario tiene permiso para listar asistencias -->
                             <a href="#" class="nav-link">
@@ -251,9 +253,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
+                        
 
-
-   
+                        
                         <li class="nav-item">
                             @can('excuse.index') <!-- Verificar si el usuario tiene permiso para listar excusas -->
                             <a href="#" class="nav-link">
@@ -281,8 +283,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
+                        
 
-
+                        
                         <li class="nav-item">
                             @can('timeTable.index') 
                             <a href="#" class="nav-link">
@@ -310,8 +313,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-
-
+                        
 
                         <li class="nav-item bordeo">
                             @can('competence.index') <!-- Verificar si el usuario tiene permiso para listar competencias -->
@@ -340,6 +342,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
+                        
 
                         @can('permission.index')
                         <span class="segurity">Seguridad</span>
@@ -370,33 +373,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
-                        <li class="nav-item">
-                            @can('role.index')
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Roles
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('role.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listar roles</p>
-                                    </a>
-                                </li>
-                                @endcan
-                                @can('role.create')
-                                <li class="nav-item">
-                                    <a href="{{ route('role.create')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Crear rol</p>
-                                    </a>
-                                </li>
-                                @endcan
-                            </ul>
-                        </li>
                         
                     </ul>
                 </nav>
@@ -463,7 +439,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Dashboard js -->
     @yield('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
