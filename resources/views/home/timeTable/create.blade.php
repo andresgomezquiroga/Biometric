@@ -59,7 +59,7 @@
                                     <label for="ficha_id">Seleccione una ficha</label>
                                     <select class="form-control" id="ficha_id" name="ficha_id">
                                         @foreach ($fichas as $ficha)
-                                            <option value="{{ $ficha->id_ficha }}">El codigo de la ficha: {{ $ficha->number_ficha }}</option>
+                                            <option value="{{ $ficha->id_ficha }}">Número de ficha: {{ $ficha->number_ficha }}</option>
                                         @endforeach
                                     </select>
                                 </div>

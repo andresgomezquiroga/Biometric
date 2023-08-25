@@ -32,7 +32,7 @@
                     <th>Jornada</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
-                    <th>Codigo de la ficha</th>
+                    <th>Número de ficha</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
@@ -68,7 +68,7 @@
                     <th>Jornada</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
-                    <th>Codigo de la ficha</th>
+                    <th>Número de ficha</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
