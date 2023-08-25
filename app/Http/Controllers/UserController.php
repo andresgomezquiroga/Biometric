@@ -59,7 +59,6 @@ class UserController extends Controller
             $photo->move(public_path($destinationPath), $filename);
             $user->photo = $destinationPath . '/' . $filename;
 
-            return redirect()->back()->with('success', 'Perfil actualizado correctamente.');
         }
 
         // Si los datos son diferentes se actualiza

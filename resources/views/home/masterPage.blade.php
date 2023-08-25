@@ -373,6 +373,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            @can('role.index')
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-users"></i>
+                                <p>
+                                    Roles
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('role.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Listar Roles</p>
+                                    </a>
+                                </li>
+                                @endcan
+                                <li class="nav-item">
+                                    @can('role.create')
+                                    <a href="{{ route('role.create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Crear Roles</p>
+                                    </a>
+                                    @endcan
+                                </li>
+                            </ul>
+                        </li>
+
 
                     </ul>
                 </nav>
