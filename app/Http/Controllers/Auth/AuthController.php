@@ -39,7 +39,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
-        
+
             if ($user->status === 'ACTIVE') {
                 View::share('user', $user);
                 return redirect()->route('dashboard');
@@ -47,12 +47,76 @@ class AuthController extends Controller
                 return redirect()->back()->with('info', 'El usuario no puede ingresar porque esta inactivo!');
             }
         }
+<<<<<<< HEAD
     
+=======
+
+
+
+>>>>>>> c95d73cda5f22f7bc6b57543f79aef21313b884e
         return back()->withErrors(['invalid_credentials' => 'Email y contraseña son incorrecta'])->withInput();
 
     }
 
 
+<<<<<<< HEAD
+=======
+    // Metodos para registrar un usuario
+    public function register() {
+        return view('auth.register');
+    }
+    public function store(Request $request) {
+
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'age' => 'required|numeric|between:15,80',
+            'gander' => 'required|in:M,F',
+            'type_document' => 'required|in:TI,CC,CE',
+            'document_number' => 'required|numeric',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password'
+        ]);
+
+        $user = new User;
+
+        $user->first_name = $request->post('first_name');
+        $user->last_name = $request->post('last_name');
+        $user->age = $request->post('age');
+        $user->gander = $request->post('gander');
+        $user->type_document = $request->post('type_document');
+        $user->document_number = $request->post('document_number');
+        $user->email = $request->post('email');
+        $user->password = $request->post('password');
+        $user->status = 'ACTIVE';
+
+        $user->save();
+
+        // Asignar el rol "Administrador"
+        $user->assignRole('Administrador');
+
+        // Obtener los permisos predefinidos y asignarlos al usuario
+        $permissions = Permission::pluck('name')->toArray();
+        $user->syncPermissions($permissions);
+
+
+
+        session([
+            'email' => $user->email,
+            'password' => $request->post('password')
+        ]);
+
+        if ($user->hasRole('Administrador')){
+         return redirect()->back()->with('success', 'Rol administrador ya creado');
+        }
+
+        return redirect()->route('login')->with('success', 'Se ha registrado el usuario correctamente');
+
+    }
+
+
+>>>>>>> c95d73cda5f22f7bc6b57543f79aef21313b884e
     // Metodos para cambiar la contraseña
     public function forgotPassword() {
         return view('auth.verifyEmail');

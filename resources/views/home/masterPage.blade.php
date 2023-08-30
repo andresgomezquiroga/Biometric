@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="#" class="brand-link">
                 <img src="{{asset('img/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">Biometric Sena</span>
@@ -163,7 +163,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 @endcan
                             </ul>
                         </li>
-                        
+
                         <li class="nav-item">
                             @can('ficha.index')
                                 <a href="{{ route('ficha.index') }}" class="nav-link">
@@ -193,9 +193,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 @endcan
                             </ul>
                         </li>
-                        
 
-                        
+
+
                         <li class="nav-item">
                             @can('program.index') <!-- Verificar si el usuario tiene permiso para listar programas -->
                             <a href="#" class="nav-link">
@@ -223,9 +223,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-                        
 
-                        
+
+
                         <li class="nav-item">
                             @can('attendance.index') <!-- Verificar si el usuario tiene permiso para listar asistencias -->
                             <a href="#" class="nav-link">
@@ -253,9 +253,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-                        
 
-                        
+
+
                         <li class="nav-item">
                             @can('excuse.index') <!-- Verificar si el usuario tiene permiso para listar excusas -->
                             <a href="#" class="nav-link">
@@ -283,11 +283,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-                        
 
-                        
+
+
                         <li class="nav-item">
-                            @can('timeTable.index') 
+                            @can('timeTable.index')
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-calendar"></i>
                                 <p>
@@ -313,7 +313,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-                        
+
 
                         <li class="nav-item bordeo">
                             @can('competence.index') <!-- Verificar si el usuario tiene permiso para listar competencias -->
@@ -342,7 +342,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                             @endcan
                         </li>
-                        
+
 
                         @can('permission.index')
                         <span class="segurity">Seguridad</span>
@@ -401,7 +401,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </ul>
                         </li>
 
-                        
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

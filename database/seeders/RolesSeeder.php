@@ -32,6 +32,7 @@ class RolesSeeder extends Seeder
         Permission::create([
             'name' => 'ficha.index',
             'group' => 'Listar ficha'
+
         ]);/*3*/
         Permission::create(['name' => 'ficha.create', 'group' => 'Crear ficha']);/*4*/
         Permission::create(['name' => 'program.index', 'group' => 'Listar programa']);/*5*/
@@ -60,10 +61,5 @@ class RolesSeeder extends Seeder
             1,2,3,4,5,6,7,8,9,10,11,12,13,14,
             15,16,17,18
         ]);
-
-
-
-        
-        
     }
 }
