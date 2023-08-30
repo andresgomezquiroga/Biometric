@@ -17,11 +17,11 @@ class FichaController extends Controller
         $user = auth()->user();
     
         // Si el usuario es instructor o administrador, obtiene todas las fichas con sus programas de formación
-        if ($user->hasRole(['Instructor', 'Administrador'])) {
+        if ($user->hasRole('Administrador')) {
             $fichas = Ficha::with('programa')->get();
         }
         // Si el usuario es aprendiz, obtiene solamente las fichas relacionadas con el permiso específico
-        else if ($user->hasRole('Aprendiz')) {
+        else if ($user->hasRole(['Instructor', 'Aprendiz'])) {
             $fichas = Ficha::whereHas('members', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             })->with('programa')->get();
@@ -58,12 +58,11 @@ class FichaController extends Controller
     public function index_members(Request $request, $fichaId)
     {
         $ficha = Ficha::findOrFail($fichaId);
-
-
-        // Obtener los integrantes de la ficha
-        $integrantes = $ficha->members;
-
-        return view('home.ficha.index_members', compact('ficha','integrantes'));
+    
+        // Cargar la relación members.user.roles
+        $ficha->load('members.roles');
+    
+        return view('home.ficha.index_members', compact('ficha'));
     }
     public function create()
     {

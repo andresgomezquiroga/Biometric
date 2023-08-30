@@ -29,9 +29,6 @@ Route::prefix('/')->group(function () {
     Route::get('/' , [AuthController::class, 'login'])->name('login');
     Route::post('/' , [AuthController::class, 'authenticate'])->name('authenticate');
 
-    // Rutas para el registro
-    Route::get('/register' , [AuthController::class, 'register'])->name('register.index');
-    Route::post('/register' , [AuthController::class, 'store'])->name('register.store');
 
     // Rutas para el password reset
     Route::get('/forgot-password' , [AuthController::class, 'forgotPassword'])->name('forgot-password');

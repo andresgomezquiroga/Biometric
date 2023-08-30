@@ -47,5 +47,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
+    public function fichas()
+    {
+        return $this->belongsToMany(Ficha::class, 'members_fichas', 'user_id', 'ficha_id');
+    }
 }

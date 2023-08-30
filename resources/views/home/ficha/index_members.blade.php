@@ -34,11 +34,12 @@
                                 <th>Tipo de Documento</th>
                                 <th>Número de Documento</th>
                                 <th>Email</th>
+                                <th>Rol</th>
                                 <th>Foto</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($integrantes as $integrante)
+                            @foreach ($ficha->members as $integrante)
                             <tr>
                                 <td>{{ $integrante->id }}</td>
                                 <td>{{ $integrante->first_name }} {{ $integrante->last_name }}</td>
@@ -47,6 +48,17 @@
                                 <td>{{ $integrante->type_document }}</td>
                                 <td>{{ $integrante->document_number }}</td>
                                 <td>{{ $integrante->email }}</td>
+                                <td>
+                                    @foreach ($integrante->roles as $role)
+                                        @if ($role->name === 'Instructor')
+                                            <span class="badge badge-secondary">{{ $role->name }}</span>
+                                        @elseif ($role->name === 'Aprendiz')
+                                            <span class="badge">{{ $role->name }}</span>
+                                        @else
+                                            <span class="badge badge-primary">{{ $role->name }}</span>
+                                        @endif
+                                    @endforeach
+                                </td>
                                 <td>
                                     @if ($integrante->photo)
                                         <img class="profile-user-img img-fluid img-circle" src="{{ asset($integrante->photo) }}" alt="Foto" style="width: 50px;">
@@ -66,6 +78,7 @@
                                 <th>Tipo de Documento</th>
                                 <th>Número de Documento</th>
                                 <th>Email</th>
+                                <th>Rol</th>
                                 <th>Foto</th>
                             </tr>
                         </tfoot>

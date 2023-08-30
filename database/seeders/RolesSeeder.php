@@ -16,38 +16,53 @@ class RolesSeeder extends Seeder
     {
         //
         $admin = Role::create(['name' => 'Administrador']);
+        $instruct = Role::create(['name' => 'Instructor']);
+        $aprendiz = Role::create(['name' => 'Aprendiz']);
 
         Permission::create([
             'name' => 'role.index',
             'group' => 'Listar role'
-        ]);
+        ]);/*1*/
 
         Permission::create([
             'name' => 'role.create',
             'group' => 'Crear role'
-        ]);
+        ]);/*2*/
 
         Permission::create([
             'name' => 'ficha.index',
             'group' => 'Listar ficha'
-        ]);
-        Permission::create(['name' => 'ficha.create', 'group' => 'Crear ficha']);
-        Permission::create(['name' => 'program.index', 'group' => 'Listar programa']);
-        Permission::create(['name' => 'program.create', 'group' => 'Crear programa']);
-        Permission::create(['name' => 'attendance.index', 'group' => 'Listar attendance']);
-        Permission::create(['name' => 'attendance.create', 'group' => 'Crear attendance']);
-        Permission::create(['name' => 'excuse.index', 'group' => 'Listar excuse']);
-        Permission::create(['name' => 'excuse.create', 'group' => 'Crear excuse']);
-        Permission::create(['name' => 'user.index', 'group' => 'Listar user']);
-        Permission::create(['name' => 'user.create', 'group' => 'Crear user']);
-        Permission::create(['name' => 'competence.index', 'group' => 'Listar competence']);
-        Permission::create(['name' => 'competence.create', 'group' => 'Crear competence']);
-        Permission::create(['name' => 'permission.index', 'group' => 'Listar permission']);
-        Permission::create(['name' => 'permission.create', 'group' => 'Crear permission']);
-        Permission::create(['name' => 'timeTable.index', 'group' => 'Crear horario']);
-        Permission::create(['name' => 'timeTable.create', 'group' => 'Crear horario']);
+        ]);/*3*/
+        Permission::create(['name' => 'ficha.create', 'group' => 'Crear ficha']);/*4*/
+        Permission::create(['name' => 'program.index', 'group' => 'Listar programa']);/*5*/
+        Permission::create(['name' => 'program.create', 'group' => 'Crear programa']);/*6*/
+        Permission::create(['name' => 'attendance.index', 'group' => 'Listar asistencias']);/*7*/
+        Permission::create(['name' => 'attendance.create', 'group' => 'Crear asistencias']);/*8*/
+        Permission::create(['name' => 'excuse.index', 'group' => 'Listar excusas']);/*9*/
+        Permission::create(['name' => 'excuse.create', 'group' => 'Crear excusas']);/*10*/
+        Permission::create(['name' => 'user.index', 'group' => 'Listar ususarios']);/*11*/
+        Permission::create(['name' => 'user.create', 'group' => 'Crear usuarios']);/*12*/
+        Permission::create(['name' => 'competence.index', 'group' => 'Listar competencias']);/*13*/
+        Permission::create(['name' => 'competence.create', 'group' => 'Crear competencias']);/*14*/
+        Permission::create(['name' => 'permission.index', 'group' => 'Listar permission']);/*15*/
+        Permission::create(['name' => 'permission.create', 'group' => 'Crear permission']);/*16*/
+        Permission::create(['name' => 'timeTable.index', 'group' => 'listar horario']);/*17*/
+        Permission::create(['name' => 'timeTable.create', 'group' => 'Crear horario']);/*18*/
         
-        $admin->permissions()->attach(Permission::all());
+        $aprendiz->permissions()->attach([
+            3,13,17,9,10
+        ]);
+        $instruct->permissions()->attach([
+            3,5,7,9,13,17
+        ]);
+
+        $admin->permissions()->attach([
+            1,2,3,4,5,6,7,8,9,10,11,12,13,14,
+            15,16,17,18
+        ]);
+
+
+
         
         
     }
