@@ -123,6 +123,9 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::put('excuse/{excuse}', [ExcusesController::class, 'update'])->name('excuse.update');
         Route::delete('excuse/{excuse}', [ExcusesController::class, 'destroy'])->name('excuse.destroy');
         Route::get('excuse/file/{filename}', [ExcusesController::class, 'viewFile'])->name('excuse.viewFile');
+        Route::get('/excuse/pending', [ExcusesController::class, 'pendingExcuses'])->name('excuse.pending');
+        Route::post('/excuse/approve/{id}', [ExcusesController::class, 'approveExcuse'])->name('excuse.approve');
+        Route::post('/excuse/reject/{id}', [ExcusesController::class, 'rejectExcuse'])->name('excuse.reject');
 
         Route::get('competence', [CompetenceController::class, 'index'])->name('competence.index');
         Route::get('competence/create', [CompetenceController::class, 'create'])->name('competence.create');

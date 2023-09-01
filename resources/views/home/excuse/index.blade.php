@@ -13,14 +13,6 @@
                 <h3 class="card-title">Tabla de excusas</h3>
             </div>
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Aquí está toda la información de las excusas</h3>
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                            <small>{{ session('success') }}</small>
-                        </div>
-                    @endif
-                </div>
                 <div class="card-body">
                     <table id="attendance" class="table table-bordered table-striped text-center">
                         <thead>
@@ -28,8 +20,15 @@
                                 <th>ID</th>
                                 <th>Comentarios</th>
                                 <th>Visualizar excusa</th>
+                                <th>Hoario de la excusa</th>
+                                <th>Estado</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
+                                @if (auth()->user()->hasRole('Instructor'))
+                                <th>Acciones</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +49,25 @@
                                             @endif
                                         </a>
                                     </td>
+
+                                    <td>
+                                        @if ($excuse->timeTable)
+                                            {{ "Fecha comienzo: {$excuse->timeTable->Fecha_inicio} - Fecha finalización: {$excuse->timeTable->Fecha_finalizacion} - Número de la ficha: {$excuse->timeTable->ficha->number_ficha}" }}
+                                        @else
+                                            Sin horario asociado
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @if ($excuse->status === 'pendiente')
+                                            Pendiente
+                                        @elseif ($excuse->status === 'aprobada')
+                                            Aprobada
+                                        @elseif ($excuse->status === 'rechazada')
+                                            Rechazada
+                                        @endif
+                                    </td>
+
                                     @if (auth()->user()->hasRole('Administrador'))
                                     <td>
                                         <a href="{{ route('excuse.edit', $excuse->id_excuse) }}" class="btn btn-primary">Editar</a>
@@ -62,6 +80,22 @@
                                         </form>
                                     </td>
                                     @endif
+
+                                    <td>
+                                        <!-- Botones de acción -->
+                                        @if (auth()->user()->hasRole(['Instructor', 'Administrador']))
+                                            @if ($excuse->status === 'pendiente')
+                                                <form action="{{ route('excuse.approve', $excuse->id_excuse) }}" method="POST" style="display: inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success">Aprobar</button>
+                                                </form>
+                                                <form action="{{ route('excuse.reject', $excuse->id_excuse) }}" method="POST" style="display: inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Rechazar</button>
+                                                </form>
+                                            @endif
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -70,8 +104,15 @@
                                 <th>ID</th>
                                 <th>Comentarios</th>
                                 <th>Visualizar excusa</th>
+                                <th>Horario de la excusa</th>
+                                <th>Estado</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
+                                @if (auth()->user()->hasRole('Instructor'))
+                                <th>Acciones</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>
@@ -94,6 +135,17 @@
     )
 </script>
 @endif
+
+<script>
+    @if (session('success'))
+        Swal.fire(
+            'Éxito!',
+            '{{ session('success') }}',
+            'success'
+        );
+    @endif
+
+</script>
 
 <script>
     $('.form-delete').click(function(e) {

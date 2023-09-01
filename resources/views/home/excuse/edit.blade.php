@@ -39,6 +39,16 @@
                     <br>
                     <input type="file" id="archive" name="archive"> 
                 </div>
+
+                <div class="form-group">
+                    <label for="timeTable_id">Seleccione su horario y la ficha a que pertenece</label>
+                    <select class="form-control" id="timeTable_id" name="timeTable_id">
+                        @foreach ($timeTables as $timeTable)
+                            <option value="{{ $timeTable->Id_timeTable }}">Comienzo {{$timeTable->Fecha_inicio}} - Finalizacion {{$timeTable->Fecha_inicio}} - # de la ficha {{$timeTable->ficha->number_ficha}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 <div class="form-group">
                     <label for="comment">Comentarios</label>
                     <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>

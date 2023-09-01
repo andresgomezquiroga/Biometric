@@ -33,8 +33,10 @@
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
                     <th>Número de ficha</th>
+                    @if (auth()->user()->hasRole('Administrador'))
                     <th>Editar</th>
                     <th>Eliminar</th>
+                    @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -69,8 +71,10 @@
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
                     <th>Número de ficha</th>
+                    @if (auth()->user()->hasRole('Administrador'))
                     <th>Editar</th>
                     <th>Eliminar</th>
+                    @endif
                   </tr>
                 </tfoot>
               </table>

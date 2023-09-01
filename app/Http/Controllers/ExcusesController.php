@@ -5,18 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Excuses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Horarios;
+use Illuminate\Support\Facades\Auth;
 
 class ExcusesController extends Controller
 {
     public function index()
     {
-        $excuses = Excuses::all();
+        $user = Auth::user();
+        
+        if ($user->hasRole('Administrador') || $user->hasRole('Instructor')) {
+            $excuses = Excuses::with('timeTable')->get();
+        } elseif ($user->hasRole('Aprendiz')) {
+            $excuses = $user->excuses()->with('timeTable')->get();
+        }
+    
+        
         return view('home.excuse.index', compact('excuses'));
     }
 
     public function create()
     {
-        return view('home.excuse.create');
+        $timeTables = Horarios::all();
+        return view('home.excuse.create', compact('timeTables'));
     }
 
     public function store(Request $request)
@@ -24,16 +35,20 @@ class ExcusesController extends Controller
         $request->validate([
             'comment' => 'required|string|max:255',
             'archive' => 'required|file|mimes:pdf,docx,jpg,jpeg,png',
+            'timeTable_id' => 'required',
         ]);
-
+    
         $maxCode = Excuses::max('id_excuse');
         $code = 'DOC' . str_pad($maxCode + 1, 7, '0', STR_PAD_LEFT);
-
-        $excuse = Excuses::create([
-            'archive' => $code,
-            'comment' => $request->comment
+    
+        $user = Auth::user(); // Obtener el usuario autenticado
+    
+        $excuse = $user->excuses()->create([
+            'archive' => $code, // Esto parece incorrecto, ¿debería ser 'archive' => $request->archive?
+            'comment' => $request->comment,
+            'timeTable_id' => $request->timeTable_id
         ]);
-
+    
         $file = $request->file('archive');
         if ($file) {
             $filename = $file->getClientOriginalName();
@@ -41,15 +56,14 @@ class ExcusesController extends Controller
             $excuse->archive = $code . '_' . $filename;
             $excuse->save();
         }
-
-        //Excusas
-
+    
         return redirect()->back()->with('success', 'Excuse creada exitosamente');
     }
 
     public function edit(Excuses $excuse)
     {
-        return view('home.excuse.edit', compact('excuse'));
+        $timeTables = Horarios::all();
+        return view('home.excuse.edit', compact('excuse', 'timeTables'));
     }
 
     public function update(Request $request, Excuses $excuse)
@@ -57,9 +71,11 @@ class ExcusesController extends Controller
         $request->validate([
             'comment' => 'required|string|max:255',
             'archive' => 'nullable|file|mimes:pdf,docx,jpg,jpeg,png',
+            'timeTable_id' => 'required',
         ]);
 
         $excuse->comment = $request->comment;
+        $excuse->timeTable_id = $request->timeTable_id;
 
         $newFile = $request->file('archive');
         if ($newFile) {
@@ -79,5 +95,24 @@ class ExcusesController extends Controller
         Storage::delete('public/' . $excuse->archive);
         $excuse->delete();
         return redirect()->back()->with('delete', 'ok');
+    }
+
+
+    public function approveExcuse($id)
+    {
+        $excuse = Excuses::findOrFail($id);
+        $excuse->status = 'aprobada';
+        $excuse->save();
+    
+        return redirect()->back()->with('success', 'Excusa aprobada exitosamente');
+    }
+    
+    public function rejectExcuse($id)
+    {
+        $excuse = Excuses::findOrFail($id);
+        $excuse->status = 'rechazada';
+        $excuse->save();
+    
+        return redirect()->back()->with('success', 'Excusa rechazada exitosamente');
     }
 }

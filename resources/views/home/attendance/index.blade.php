@@ -30,8 +30,10 @@
                                 <th>ID</th>
                                 <th>Hora de la asistencia</th>
                                 <th>Observaciones</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -62,8 +64,10 @@
                                 <th>ID</th>
                                 <th>Hora de la asistencia</th>
                                 <th>Observaciones</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>

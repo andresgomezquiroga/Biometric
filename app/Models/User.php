@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles; // Importar el trait HasRoles
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles; // Agregar el trait HasRoles
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     // Resto del código del modelo...
     // ...
@@ -51,4 +51,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Ficha::class, 'members_fichas', 'user_id', 'ficha_id');
     }
+
+    public function excuses()
+    {
+        return $this->hasMany(Excuses::class, 'user_id');
+    }
+
+    
+
 }

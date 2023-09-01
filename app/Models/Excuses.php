@@ -12,6 +12,18 @@ class Excuses extends Model
 
     protected $fillable = [
         'archive',
-        'comment'
+        'comment',
+        'timeTable_id'
     ];
+
+    public function timeTable()
+    {
+        return $this->belongsTo(Horarios::class, 'timeTable_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
+

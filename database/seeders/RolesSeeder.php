@@ -51,7 +51,7 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'timeTable.create', 'group' => 'Crear horario']);/*18*/
         
         $aprendiz->permissions()->attach([
-            3,13,17,9,10
+            3,17,9,10
         ]);
         $instruct->permissions()->attach([
             3,5,7,9,13,17

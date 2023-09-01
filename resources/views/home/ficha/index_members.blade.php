@@ -29,11 +29,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre y Apellido</th>
-                                <th>Edad</th>
-                                <th>Género</th>
-                                <th>Tipo de Documento</th>
-                                <th>Número de Documento</th>
-                                <th>Email</th>
+                                <th>Correo</th>
                                 <th>Rol</th>
                                 <th>Foto</th>
                             </tr>
@@ -43,10 +39,6 @@
                             <tr>
                                 <td>{{ $integrante->id }}</td>
                                 <td>{{ $integrante->first_name }} {{ $integrante->last_name }}</td>
-                                <td>{{ $integrante->age }}</td>
-                                <td>{{ $integrante->gander }}</td>
-                                <td>{{ $integrante->type_document }}</td>
-                                <td>{{ $integrante->document_number }}</td>
                                 <td>{{ $integrante->email }}</td>
                                 <td>
                                     @foreach ($integrante->roles as $role)
@@ -72,12 +64,8 @@
                         <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Edad</th>
-                                <th>Género</th>
-                                <th>Tipo de Documento</th>
-                                <th>Número de Documento</th>
-                                <th>Email</th>
+                                <th>Nombre y apellido</th>
+                                <th>Correo</th>
                                 <th>Rol</th>
                                 <th>Foto</th>
                             </tr>

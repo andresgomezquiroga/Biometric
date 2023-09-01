@@ -29,8 +29,10 @@
                                 <th>Nombre de la competencia</th>
                                 <th>Numero de la ficha</th>
                                 <th>Descripcion de la competencia</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -64,8 +66,10 @@
                                 <th>Nombre de la competencia</th>
                                 <th>Numero de la ficha</th>
                                 <th>Descripcion de la competencia</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>

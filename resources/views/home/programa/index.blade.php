@@ -30,8 +30,10 @@
                                 <th>ID</th>
                                 <th>Código del programa</th>
                                 <th>Nombre del programa</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -63,8 +65,10 @@
                                 <th>ID</th>
                                 <th>Código del programa</th>
                                 <th>Nombre del programa</th>
+                                @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                @endif
                             </tr>
                         </tfoot>
                     </table>
