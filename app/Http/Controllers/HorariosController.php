@@ -36,6 +36,8 @@ class HorariosController extends Controller
             'Jornada' => 'required|in:Manana,Tarde,Mixta',
             'Fecha_inicio' => 'required',
             'Fecha_finalizacion' => 'required',
+            'time_start' => 'required',
+            'time_finish' => 'required',
             'ficha_id' => 'required',
         ]);
 
@@ -44,6 +46,8 @@ class HorariosController extends Controller
         $horario->Fecha_inicio = $request->input('Fecha_inicio');
         $horario->Fecha_finalizacion = $request->input('Fecha_finalizacion');
         $horario->ficha_id = $request->input('ficha_id');
+        $horario->time_start = $request->input('time_start');
+        $horario->time_finish = $request->input('time_finish');
         $horario->save();
 
         return redirect()->back()->with('success', 'Horario creado exitosamente');
@@ -76,6 +80,8 @@ class HorariosController extends Controller
             'Jornada' => 'required|in:Manana,Tarde,Mixta',
             'Fecha_inicio' => 'required',
             'Fecha_finalizacion' => 'required',
+            'time_start' => 'required',
+            'time_finish' => 'required',
             'ficha_id' => 'required',
         ]);
 
@@ -83,6 +89,8 @@ class HorariosController extends Controller
         $horario->Jornada = $request->input('Jornada');
         $horario->Fecha_inicio = $request->input('Fecha_inicio');
         $horario->Fecha_finalizacion = $request->input('Fecha_finalizacion');
+        $horario->time_start = $request->input('time_start');
+        $horario->time_finish = $request->input('time_finish');
         $horario->ficha_id = $request->input('ficha_id');
         $horario->update();
 

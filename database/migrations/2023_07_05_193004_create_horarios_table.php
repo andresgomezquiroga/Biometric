@@ -16,6 +16,8 @@ return new class extends Migration
             $table->enum('Jornada',['Manana','Tarde','Mixta']);
             $table->date('Fecha_inicio');
             $table->date('Fecha_finalizacion');
+            $table->time('time_start');
+            $table->time('time_finish');
             $table->unsignedBigInteger('ficha_id')->nullable();
             $table->foreign('ficha_id')->references('id_ficha')->on('fichas');
 

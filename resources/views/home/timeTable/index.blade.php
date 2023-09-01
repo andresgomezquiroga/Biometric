@@ -32,6 +32,8 @@
                     <th>Jornada</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de salida</th>
                     <th>Número de ficha</th>
                     @if (auth()->user()->hasRole('Administrador'))
                     <th>Editar</th>
@@ -46,6 +48,8 @@
                     <td>{{$horario->Jornada}}</td>
                     <td>{{$horario->Fecha_inicio}}</td>
                     <td>{{$horario->Fecha_finalizacion}}</td>
+                    <td>{{$horario->time_start}}</td>
+                    <td>{{$horario->time_finish}}</td>
                     <td>{{ $horario->ficha ? $horario->ficha->number_ficha : 'No encontrado codigo de la ficha' }}</td>
 
                     @if (auth()->user()->hasRole('Administrador'))
@@ -70,6 +74,8 @@
                     <th>Jornada</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha de finalización</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de salida</th>
                     <th>Número de ficha</th>
                     @if (auth()->user()->hasRole('Administrador'))
                     <th>Editar</th>

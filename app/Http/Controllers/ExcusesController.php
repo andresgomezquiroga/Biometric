@@ -15,9 +15,9 @@ class ExcusesController extends Controller
         $user = Auth::user();
         
         if ($user->hasRole('Administrador') || $user->hasRole('Instructor')) {
-            $excuses = Excuses::with('timeTable')->get();
+            $excuses = Excuses::all();
         } elseif ($user->hasRole('Aprendiz')) {
-            $excuses = $user->excuses()->with('timeTable')->get();
+            $excuses = $user->excuses()->get();
         }
     
         
@@ -26,8 +26,7 @@ class ExcusesController extends Controller
 
     public function create()
     {
-        $timeTables = Horarios::all();
-        return view('home.excuse.create', compact('timeTables'));
+        return view('home.excuse.create');
     }
 
     public function store(Request $request)
@@ -35,7 +34,7 @@ class ExcusesController extends Controller
         $request->validate([
             'comment' => 'required|string|max:255',
             'archive' => 'required|file|mimes:pdf,docx,jpg,jpeg,png',
-            'timeTable_id' => 'required',
+            'date_excuse' => 'required',
         ]);
     
         $maxCode = Excuses::max('id_excuse');
@@ -46,7 +45,7 @@ class ExcusesController extends Controller
         $excuse = $user->excuses()->create([
             'archive' => $code, // Esto parece incorrecto, ¿debería ser 'archive' => $request->archive?
             'comment' => $request->comment,
-            'timeTable_id' => $request->timeTable_id
+            'date_excuse' => $request->date_excuse
         ]);
     
         $file = $request->file('archive');
@@ -62,8 +61,7 @@ class ExcusesController extends Controller
 
     public function edit(Excuses $excuse)
     {
-        $timeTables = Horarios::all();
-        return view('home.excuse.edit', compact('excuse', 'timeTables'));
+        return view('home.excuse.edit', compact('excuse'));
     }
 
     public function update(Request $request, Excuses $excuse)
@@ -71,11 +69,11 @@ class ExcusesController extends Controller
         $request->validate([
             'comment' => 'required|string|max:255',
             'archive' => 'nullable|file|mimes:pdf,docx,jpg,jpeg,png',
-            'timeTable_id' => 'required',
+            'date_excuse' => 'required',
         ]);
 
         $excuse->comment = $request->comment;
-        $excuse->timeTable_id = $request->timeTable_id;
+        $excuse->date_excuse = $request->date_excuse;
 
         $newFile = $request->file('archive');
         if ($newFile) {

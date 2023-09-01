@@ -20,14 +20,14 @@
                                 <th>ID</th>
                                 <th>Comentarios</th>
                                 <th>Visualizar excusa</th>
-                                <th>Hoario de la excusa</th>
+                                <th>Fecha inasistencia</th>
                                 <th>Estado</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                                 @endif
-                                @if (auth()->user()->hasRole('Instructor'))
-                                <th>Acciones</th>
+                                @if (auth()->user()->hasRole(['Instructor', 'Administrador']))
+                                <th>Aceptar / Rechazar</th>
                                 @endif
                             </tr>
                         </thead>
@@ -51,11 +51,7 @@
                                     </td>
 
                                     <td>
-                                        @if ($excuse->timeTable)
-                                            {{ "Fecha comienzo: {$excuse->timeTable->Fecha_inicio} - Fecha finalización: {$excuse->timeTable->Fecha_finalizacion} - Número de la ficha: {$excuse->timeTable->ficha->number_ficha}" }}
-                                        @else
-                                            Sin horario asociado
-                                        @endif
+                                        {{$excuse->date_excuse}}
                                     </td>
 
                                     <td>
@@ -104,14 +100,14 @@
                                 <th>ID</th>
                                 <th>Comentarios</th>
                                 <th>Visualizar excusa</th>
-                                <th>Horario de la excusa</th>
+                                <th>Fecha inasistencias</th>
                                 <th>Estado</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                                 @endif
-                                @if (auth()->user()->hasRole('Instructor'))
-                                <th>Acciones</th>
+                                @if (auth()->user()->hasRole(['Instructor', 'Administrador']))
+                                <th>Aceptar / Rechazar</th>
                                 @endif
                             </tr>
                         </tfoot>

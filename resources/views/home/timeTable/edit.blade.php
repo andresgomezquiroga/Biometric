@@ -45,6 +45,15 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="time_start">Hora de inicio</label>
+                        <input type="time" class="form-control" id="time_start" name="time_start" value="{{ $horarios->time_start }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time_finish">Fecha de finalización</label>
+                        <input type="time" class="form-control" id="time_finish" name="time_finish" value="{{ $horarios->time_finish }}">
+                    </div>
+                    <div class="form-group">
                         <label for="ficha_id">Seleccione una ficha</label>
                         <select class="form-control" id="ficha_id" name="ficha_id">
                             @foreach ($fichas as $ficha)

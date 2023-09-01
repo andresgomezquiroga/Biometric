@@ -56,6 +56,20 @@
 
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label for="time_start">Hora de inicio</label>
+                                    <input type="time" class="form-control" id="time_start" name="time_start" value="{{ old('time_start') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="time_finish">Hora de finalizacion</label>
+                                    <input type="time" class="form-control" id="time_finish" name="time_finish" value="{{ old('time_finish') }}">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label for="ficha_id">Seleccione una ficha</label>
                                     <select class="form-control" id="ficha_id" name="ficha_id">
                                         @foreach ($fichas as $ficha)

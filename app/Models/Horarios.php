@@ -15,6 +15,8 @@ class Horarios extends Model
         'Jornada',
         'Fecha_inicio',
         'Fecha_finalizacion',
+        'time_start',
+        'time_finish',
         'ficha_id'
     ];
 

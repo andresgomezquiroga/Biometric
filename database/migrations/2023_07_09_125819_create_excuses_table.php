@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id('id_excuse');
             $table->string('comment');
             $table->string('archive');
-            $table->unsignedBigInteger('timeTable_id')->nullable();
-            $table->foreign('timeTable_id')->references('id_timeTable')->on('horarios');
+            $table->date('date_excuse');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
