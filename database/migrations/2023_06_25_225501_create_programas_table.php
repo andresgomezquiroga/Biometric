@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id('id_program');
             $table->string('name_program');
             $table->integer('program_code');
-            $table->unsignedBigInteger('ficha_id')->nullable();
-            $table->foreign('ficha_id')->references('id_ficha')->on('fichas');
             $table->timestamps();
         });
     }
