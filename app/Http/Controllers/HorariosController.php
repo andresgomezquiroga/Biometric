@@ -6,7 +6,8 @@ use App\Models\Horarios;
 use Illuminate\Http\Request;
 use App\Models\Ficha;
 use Spatie\Permission\Models\Role;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -17,8 +18,18 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        // Obtén los horarios con sus fichas e instructores relacionados
-        $horarios = Horarios::with(['ficha.instructors'])->get();
+        $user = Auth::user();
+    
+        if ($user->hasRole('Administrador')) {
+            // Si es un administrador, obtén todos los horarios
+            $horarios = Horarios::with(['ficha.instructors'])->get();
+        } elseif ($user->hasRole('Instructor')) {
+            // Si es un instructor, obtén las fichas relacionadas con el instructor
+            $fichas = $user->fichas;
+    
+            // Obtén los horarios relacionados con esas fichas
+            $horarios = Horarios::whereIn('ficha_id', $fichas->pluck('id_ficha'))->with(['ficha.instructors'])->get();
+        }
     
         return view('home.timeTable.index', compact('horarios'));
     }
