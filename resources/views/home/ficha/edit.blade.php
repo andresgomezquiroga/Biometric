@@ -53,6 +53,18 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="competences_id">Competencias</label>
+                    <select class="form-control" id="competences_id" name="competences_id">
+                        @foreach ($competences as $competence)
+                            <option value="{{ $competence->id_competence }}"
+                                {{ $ficha->competences_id == $competence->id_competence ? 'selected' : '' }}>
+                                Nombre de la competencia: {{ $competence->name_competence }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Editar Ficha</button>
                 </div>
@@ -90,6 +102,10 @@
             <div class="form-group">
                 <label for="programa_id">Programa de Formación:</label>
                 <input value="{{ $ficha->programa->name_program }}" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="description_competence">Descripción de la competencia:</label>
+                <textarea class="form-control" rows="4" readonly>{{ $ficha->competence->description_competence }}</textarea>
             </div>
         </div>
         <!-- /.card-body -->
