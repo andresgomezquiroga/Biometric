@@ -31,12 +31,12 @@ class Ficha extends Model
     }
 
     public function instructors()
-{
-    return $this->belongsToMany(User::class, 'members_fichas', 'ficha_id', 'user_id')
-        ->whereHas('roles', function ($query) {
-            $query->where('name', 'Instructor');
-        });
-}
+    {
+        return $this->belongsToMany(User::class, 'members_fichas', 'ficha_id', 'user_id')
+            ->whereHas('roles', function ($query) {
+                $query->where('name', 'Instructor');
+            });
+    }
 
     public function competence()
     {
