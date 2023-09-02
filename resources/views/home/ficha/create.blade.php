@@ -56,6 +56,19 @@
                             </div>
                         </div>
 
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="competences_id">Competencias</label>
+                                <select class="form-control" id="competences_id" name="competences_id">
+                                    @foreach ($competences as $competence)
+                                            <optgroup label="Nombre de la competencia: {{ $competence->name_competence }}">
+                                                <option value="{{ $competence->id_competence }}">Descripcion de la competencia: {{$competence->description_competence}}</option>
+                                            </optgroup>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="text-center">

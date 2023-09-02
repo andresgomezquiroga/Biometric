@@ -34,7 +34,7 @@
                     <th>Fecha de finalización</th>
                     <th>Hora de inicio</th>
                     <th>Hora de salida</th>
-                    <th>Número de ficha</th>
+                    <th>Instructor y el numero de la ficha</th>
                     @if (auth()->user()->hasRole('Administrador'))
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -50,7 +50,21 @@
                     <td>{{$horario->Fecha_finalizacion}}</td>
                     <td>{{$horario->time_start}}</td>
                     <td>{{$horario->time_finish}}</td>
-                    <td>{{ $horario->ficha ? $horario->ficha->number_ficha : 'No encontrado codigo de la ficha' }}</td>
+                    <td>
+                      @if ($horario->ficha)
+                          Número de ficha: {{ $horario->ficha->number_ficha }}
+                          @if ($horario->ficha->instructors->isNotEmpty())
+                              <br>Instructor(es):
+                              @foreach ($horario->ficha->instructors as $instructor)
+                              - {{ $instructor->first_name }} {{ $instructor->last_name }} <br>
+                              @endforeach
+                          @else
+                              <br>No hay instructor asignado
+                          @endif
+                      @else
+                          No encontrado código de la ficha
+                      @endif
+                  </td>
 
                     @if (auth()->user()->hasRole('Administrador'))
                     <td>
@@ -76,7 +90,7 @@
                     <th>Fecha de finalización</th>
                     <th>Hora de inicio</th>
                     <th>Hora de salida</th>
-                    <th>Número de ficha</th>
+                    <th>Instructor y el numero de la ficha</th>
                     @if (auth()->user()->hasRole('Administrador'))
                     <th>Editar</th>
                     <th>Eliminar</th>

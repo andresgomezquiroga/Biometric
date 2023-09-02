@@ -14,7 +14,7 @@ class CompetenceController extends Controller
     public function index()
     {
         //
-        $competences = Competence::with('ficha')->get();
+        $competences = Competence::all();
         return view('home.competence.index', compact('competences'));
         
     }
@@ -25,8 +25,7 @@ class CompetenceController extends Controller
     public function create()
     {
         //
-        $fichas = Ficha::all();
-        return view('home.competence.create', compact('fichas'));
+        return view('home.competence.create');
     }
 
     /**
@@ -38,13 +37,11 @@ class CompetenceController extends Controller
         $request->validate([
             'name_competence' => 'required',
             'description_competence' => 'required',
-            'ficha_id' => 'required',
         ]);
 
         $competence = new Competence();
         $competence->name_competence = $request->input('name_competence');
         $competence->description_competence = $request->input('description_competence');
-        $competence->ficha_id = $request->input('ficha_id');
         $competence->save();
 
         return redirect()->back()->with('success', 'Competencia creada exitosamente');
@@ -64,8 +61,7 @@ class CompetenceController extends Controller
     public function edit(Competence $competence)
     {
         //
-        $fichas = Ficha::all();
-        return view('home.competence.edit', compact('competence', 'fichas'));
+        return view('home.competence.edit', compact('competence'));
     }
 
     /**
@@ -79,12 +75,10 @@ class CompetenceController extends Controller
         $request->validate([
             'name_competence' => 'required',
             'description_competence' => 'required',
-            'ficha_id' => 'required',
         ]);
 
         $competence->name_competence = $request->input('name_competence');
         $competence->description_competence = $request->input('description_competence');
-        $competence->ficha_id = $request->input('ficha_id');
         $competence->update();
 
         return redirect()->back()->with('success', 'Competencia actualizada exitosamente');

@@ -27,7 +27,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre de la competencia</th>
-                                <th>Numero de la ficha</th>
                                 <th>Descripcion de la competencia</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
@@ -42,7 +41,6 @@
                                     <td>
                                         {{ $competence->name_competence }}
                                     </td>
-                                    <td>{{ $competence->ficha ? $competence->ficha->number_ficha : 'No encontrado la ficha' }}</td>
                                     <th>{{ $competence->description_competence }}</th>
 
                                     @if (auth()->user()->hasRole('Administrador'))
@@ -64,7 +62,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre de la competencia</th>
-                                <th>Numero de la ficha</th>
                                 <th>Descripcion de la competencia</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>

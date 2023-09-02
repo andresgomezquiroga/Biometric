@@ -14,13 +14,5 @@ class Competence extends Model
     protected $fillable = [
         'name_competence',
         'description_competence',
-        'ficha_id',
     ];
-
-    public function ficha()
-    {
-        return $this->belongsTo(Ficha::class, 'ficha_id');
-    }
-
-    
 }

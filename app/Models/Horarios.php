@@ -24,4 +24,5 @@ class Horarios extends Model
     {
         return $this->belongsTo(Ficha::class, 'ficha_id');
     }
+
 }

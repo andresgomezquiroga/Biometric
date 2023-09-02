@@ -67,21 +67,26 @@
                                     <input type="time" class="form-control" id="time_finish" name="time_finish" value="{{ old('time_finish') }}">
                                 </div>
                             </div>
-
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="ficha_id">Seleccione una ficha</label>
+                                    <label for="ficha_id">Instructor y el número de la ficha vinculados</label>
                                     <select class="form-control" id="ficha_id" name="ficha_id">
                                         @foreach ($fichas as $ficha)
-                                            <option value="{{ $ficha->id_ficha }}">Número de ficha: {{ $ficha->number_ficha }}</option>
+                                            @if ($ficha->instructors->isNotEmpty())
+                                                <optgroup label="Número de la ficha: {{ $ficha->number_ficha }}">
+                                                    @foreach ($ficha->instructors as $instructor)
+                                                        <option value="{{ $ficha->id_ficha }}">
+                                                            Instructor: {{ $instructor->first_name }} {{ $instructor->last_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </optgroup>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-
-
-
-
+                
+                            
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Crear</button>

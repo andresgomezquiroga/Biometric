@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ficha_id')->nullable();
             $table->foreign('ficha_id')->references('id_ficha')->on('fichas');
 
+
             $table->timestamps();
         });
     }

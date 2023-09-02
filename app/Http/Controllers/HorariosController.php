@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Horarios;
 use Illuminate\Http\Request;
 use App\Models\Ficha;
+use Spatie\Permission\Models\Role;
+use App\Models\User;
+
 
 
 class HorariosController extends Controller
@@ -14,7 +17,9 @@ class HorariosController extends Controller
      */
     public function index()
     {
-        $horarios = Horarios::with('ficha')->get();
+        // Obtén los horarios con sus fichas e instructores relacionados
+        $horarios = Horarios::with(['ficha.instructors'])->get();
+    
         return view('home.timeTable.index', compact('horarios'));
     }
 
@@ -23,7 +28,7 @@ class HorariosController extends Controller
      */
     public function create()
     {
-        $fichas = Ficha::all();
+        $fichas = Ficha::with('instructors')->get();
         return view('home.timeTable.create', compact('fichas'));
     }
 
@@ -45,9 +50,9 @@ class HorariosController extends Controller
         $horario->Jornada = $request->input('Jornada');
         $horario->Fecha_inicio = $request->input('Fecha_inicio');
         $horario->Fecha_finalizacion = $request->input('Fecha_finalizacion');
-        $horario->ficha_id = $request->input('ficha_id');
         $horario->time_start = $request->input('time_start');
         $horario->time_finish = $request->input('time_finish');
+        $horario->ficha_id = $request->input('ficha_id'); // Asigna la ficha seleccionada
         $horario->save();
 
         return redirect()->back()->with('success', 'Horario creado exitosamente');

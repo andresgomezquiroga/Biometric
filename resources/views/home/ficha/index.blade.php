@@ -19,6 +19,8 @@
                         <p class="text-muted mb-1">Fecha de inicio: {{ $ficha->date_start }}</p>
                         <p class="text-muted mb-1">Fecha de fin: {{ $ficha->date_end }}</p>
                         <p class="text-muted mb-1">Programa de formación: {{ $ficha->programa ? $ficha->programa->name_program : 'No asignado' }}</p>
+                        <p class="text-muted mb-1">Nombre la competencia: {{ $ficha->competence ? $ficha->competence->name_competence : 'Competencia no asignado' }}
+                        </p>
                         <div class="mt-3">
                             @if(auth()->user()->hasRole('Administrador'))
                             <a href="{{ route('ficha.edit', ['ficha' => $ficha->id_ficha]) }}" class="btn btn-primary">Editar</a>

@@ -34,14 +34,6 @@
                     <input type="text" class="form-control" id="name_competence" name="name_competence" value="{{ $competence->name_competence }}">
                 </div>
 
-                <div class="form-group">
-                    <label for="ficha_id">Numero de ficha vinculada</label>
-                    <select class="form-control" id="ficha_id" name="ficha_id">
-                        @foreach ($fichas as $ficha)
-                            <option value="{{ $ficha->id_ficha }}">{{ $ficha->number_ficha }}</option>
-                        @endforeach
-                    </select>
-                </div>
 
                 <div class="form-group">
                     <label for="description_competence">Descripcion de la competencia</label>
@@ -73,10 +65,6 @@
             <div class="form-group">
                 <label for="name_competence">Nombre de la competencia:</label>
                 <input value="{{ $competence->name_competence }}" class="form-control" readonly>
-            </div>
-            <div class="form-group">
-                <label for="ficha_id">Numero de ficha vinculada:</label>
-                <input value="{{ $competence->ficha->number_ficha }}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label for="description_competence">Descripcion de la competencia:</label>

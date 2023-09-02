@@ -34,17 +34,6 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="ficha_id">Numero de la ficha vinculables</label>
-                                <select class="form-control" id="ficha_id" name="ficha_id">
-                                    @foreach ($fichas as $ficha)
-                                        <option value="{{ $ficha->id_ficha }}">{{ $ficha->number_ficha }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="row">
