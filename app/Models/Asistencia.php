@@ -12,7 +12,9 @@ class Asistencia extends Model
 
     protected $fillable = [
         'admission_time',
-        'comments',
+        'name_attendance',
+        'code_attendance',
+        'apprentices_assisted',
     ];
 
 }

@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id('id_attendance');
+            $table->integer('code_attendance');
+            $table->string('name_attendance');
             $table->time('admission_time');
-            $table->string('comments');
+            $table->string('apprentices_assisted')->nullable();
             $table->timestamps();
         });
     }

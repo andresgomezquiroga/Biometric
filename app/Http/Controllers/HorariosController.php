@@ -84,7 +84,7 @@ class HorariosController extends Controller
      */
     public function edit(Horarios $horarios)
     {
-        $fichas = Ficha::all();
+        $fichas = Ficha::with('instructors')->get();
         return view('home.timeTable.edit', compact('horarios', 'fichas'));
     }
     /**

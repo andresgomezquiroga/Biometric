@@ -27,9 +27,10 @@
                     <table id="attendance" class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Codigo</th>
                                 <th>Hora de la asistencia</th>
-                                <th>Observaciones</th>
+                                <th>Nombre de la asistencia</th>
+                                <th>Aprendices asistidos</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
@@ -39,9 +40,10 @@
                         <tbody>
                             @foreach ($asistencias as $asistencia)
                             <tr>
-                                <td>{{$asistencia->id_attendance}}</td>
+                                <td>{{$asistencia->code_attendance}}</td>
                                 <td>{{$asistencia->admission_time}}</td>
-                                <td>{{$asistencia->comments}}</td>
+                                <td>{{$asistencia->name_attendance}}</td>
+                                <td>{{$asistencia->apprentices_assisted}}</td>
 
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <td>
@@ -61,9 +63,10 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
+                                <th>Codigo</th>
                                 <th>Hora de la asistencia</th>
-                                <th>Observaciones</th>
+                                <th>Nombre de la asistencia</th>
+                                <th>Aprendices asistidos</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>

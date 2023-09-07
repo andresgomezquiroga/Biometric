@@ -35,14 +35,28 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="admission_time">Hora asistencia</label>
-                                <input type="time" class="form-control" id="admission_time" name="admission_time"> 
+                                <label for="code_attendance">Ingrese el codigo de la asistencia</label>
+                                <input type="text" class="form-control" id="code_attendance" name="code_attendance">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="comments">Observaciones</label>
-                                <textarea name="comments" id="comments" cols="30" rows="5" class="form-control"></textarea>
+                                <label for="admission_time">Hora asistencia</label>
+                                <input type="time" class="form-control" id="admission_time" name="admission_time"> 
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="name_attendance">Nombre de la asistencia</label>
+                                <input type="text" class="form-control" id="name_attendance" name="name_attendance">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="apprentices_assisted">Aprendices asistidos</label>
+                                <input type="text" class="form-control" id="apprentices_assisted" name="apprentices_assisted">
                             </div>
                         </div>
 

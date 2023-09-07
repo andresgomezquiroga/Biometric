@@ -38,7 +38,9 @@ class AsistenciaController extends Controller
         //
         $validator = validator($request->all(), [
             'admission_time' => 'required|date_format:H:i',
-            'comments' => 'required|max:255',
+            'name_attendance' => 'required|max:255',
+            'code_attendance' => 'required|max:255',
+            'apprentices_assisted' => 'required|max:255',
             ]);
 
         if ($validator->fails()) {
@@ -47,7 +49,9 @@ class AsistenciaController extends Controller
 
         Asistencia::create([
             'admission_time' => $request->admission_time,
-            'comments' => $request->comments,
+            'name_attendance' => $request->name_attendance,
+            'code_attendance' => $request->code_attendance,
+            'apprentices_assisted' => $request->apprentices_assisted
         ]);
 
         return redirect()->back()->with('success', 'Asistencia creada exitosamente');
@@ -78,7 +82,9 @@ class AsistenciaController extends Controller
         //
         $validator = validator($request->all(), [
             'admission_time' => 'required|date_format:H:i',
-            'comments' => 'required|max:255',
+            'name_attendance' => 'required|max:255',
+            'code_attendance' => 'required|max:255',
+            'apprentices_assisted' => 'required|max:255',
             ]);
         
         if ($validator->fails()) {
@@ -86,7 +92,9 @@ class AsistenciaController extends Controller
         }
         $asistencia->update([
             'admission_time' => $request->admission_time,
-            'comments' => $request->comments,
+            'name_attendance' => $request->name_attendance,
+            'code_attendance' => $request->code_attendance,
+            'apprentices_assisted' => $request->aprentices_assisted
         ]);
         return redirect()->back()->with('success', 'Asistencia actualizada exitosamente');
     }

@@ -122,7 +122,7 @@ class FichaController extends Controller
         $ficha->date_start = $request->input('date_start');
         $ficha->date_end = $request->input('date_end');
         $ficha->programa_id = $request->input('programa_id');
-        $ficha->competence_id = $request->input('competences_id');
+        $ficha->competences_id = $request->input('competences_id');
         $ficha->update();
 
         return redirect()->back()->with('success', 'Ficha actualizada exitosamente');

@@ -111,7 +111,7 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('timeTable/create', [HorariosController::class,'create'])->name('timeTable.create');
         Route::post('timeTable', [HorariosController::class,'store'])->name('timeTable.store');
         Route::get('timeTable/{horarios}/edit', [HorariosController::class,'edit'])->name('timeTable.edit');
-        Route::put('timeTable/{horario}', [HorariosController::class, 'update'])->name('timeTable.update');
+        Route::put('timeTable/{horarios}', [HorariosController::class, 'update'])->name('timeTable.update');
         Route::delete('timeTable/{horarios}', [HorariosController::class,'destroy'])->name('timeTable.destroy');
 
 

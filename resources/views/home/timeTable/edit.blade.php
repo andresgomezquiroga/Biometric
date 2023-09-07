@@ -20,48 +20,73 @@
                     </div>
                 @endif
 
-                <form action="{{ route('timeTable.update', ['timeTable' => $timeTable->id_timeTable]) }}" method="POST">
+                <form action="{{ route('timeTable.update', ['horarios' => $horarios->Id_timeTable]) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="id_timeTable" value="{{ $timeTable->id_timeTable }}">
+                    <input type="hidden" name="Id_timeTable" value="{{ $horarios->Id_timeTable }}">
                     <div class="form-group">
                         <label>Jornada</label>
                         <select class="form-control" id="Jornada" name="Jornada">
                             <option selected disabled>Seleccione la jornada</option>
-                            <option value="Manana"{{ old('Jornada') == 'Manana' ? 'selected' : '' }}>Mañana</option>
-                            <option value="Tarde"{{ old('Jornada') == 'Tarde' ? 'selected' : '' }}>Tarde</option>
-                            <option value="Mixta"{{ old('Jornada') == 'Mixta' ? 'selected' : '' }}>Mixta</option>
+                            <option value="Manana"{{ $horarios->Jornada == 'Manana' ? 'selected' : '' }}>Mañana</option>
+                            <option value="Tarde"{{ $horarios->Jornada == 'Tarde' ? 'selected' : '' }}>Tarde</option>
+                            <option value="Mixta"{{ $horarios->Jornada == 'Mixta' ? 'selected' : '' }}>Mixta</option>
                         </select>
                     </div>
+                    @error('Jornada')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
                     <div class="form-group">
                         <label for="Fecha_inicio">Fecha de inicio</label>
                         <input type="date" class="form-control" id="Fecha_inicio" name="Fecha_inicio" value="{{ $horarios->Fecha_inicio }}">
                     </div>
+                    @error('Fecha_inicio')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
                     <div class="form-group">
                         <label for="Fecha_finalizacion">Fecha de finalización</label>
                         <input type="date" class="form-control" id="Fecha_finalizacion" name="Fecha_finalizacion" value="{{ $horarios->Fecha_finalizacion }}">
                     </div>
+                    @error('Fecha_finalizacion')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
                     <div class="form-group">
                         <label for="time_start">Hora de inicio</label>
                         <input type="time" class="form-control" id="time_start" name="time_start" value="{{ $horarios->time_start }}">
                     </div>
+                    @error('time_start')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
 
                     <div class="form-group">
                         <label for="time_finish">Fecha de finalización</label>
                         <input type="time" class="form-control" id="time_finish" name="time_finish" value="{{ $horarios->time_finish }}">
                     </div>
+                    @error('time_finish')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     <div class="form-group">
-                        <label for="ficha_id">Seleccione una ficha</label>
-                        <select class="form-control" id="ficha_id" name="ficha_id">
+                        <label for="ficha_id">Instructor y el número de la ficha vinculados</label>
+                        <select name="ficha_id" id="ficha_id" class="form-control">
                             @foreach ($fichas as $ficha)
-                                <option value="{{ $ficha->id_ficha }}">El codigo de la ficha: {{ $ficha->number_ficha }}</option>
+                                @if ($ficha->instructors->isNotEmpty())
+                                    <optgroup label="Número de la ficha: {{ $ficha->number_ficha }}">
+                                        @foreach ($ficha->instructors as $instructor)
+                                            <option value="{{ $instructor->id }}">
+                                                Instructor: {{ $instructor->first_name }} {{ $instructor->last_name }}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+                                @endif
                             @endforeach
                         </select>
                     </div>
-
+                    @error('ficha_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     <button type="submit" class="btn btn-primary">Actualizar</button>
                 </form>
             </div>

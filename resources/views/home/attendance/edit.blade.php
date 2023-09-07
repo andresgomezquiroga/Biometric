@@ -35,13 +35,22 @@
                 @csrf
                 @method('PUT')
                     <div class="form-group">
+                        <label for="code_attendance">Ingrese el codigo de la asistencia</label>
+                        <input type="text" class="form-control" id="code_attendance" name="code_attendance">
+                    </div>
+                    <div class="form-group">
                         <label for="admission_time">Hora asistencia</label>
                         <input type="time" class="form-control" id="admission_time" name="admission_time"> 
                     </div>
                     <div class="form-group">
-                        <label for="comments">Observaciones</label>
-                        <textarea name="comments" id="comments" cols="30" rows="5" class="form-control"></textarea>
+                        <label for="name_attendance">Nombre de la asistencia</label>
+                        <input type="text" class="form-control" id="name_attendance" name="name_attendance">
                     </div>
+                    <div class="form-group">
+                        <label for="aprentices_assisted">Aprendices asistidos</label>
+                        <input type="text" class="form-control" id="aprentices_assisted" name="aprentices_assisted">
+                    </div>
+
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Editar Asistencia</button>
@@ -66,14 +75,20 @@
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label for="name_program">Hora de la asistencia:</label>
+                <label for="admission_time">Hora de la asistencia:</label>
                 <input value="{{$asistencia->admission_time}}" class="form-control" readonly>
             </div>
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label for="program_code">Observaciones:</label>
-                <input value="{{$asistencia->comments}}" class="form-control" readonly>
+                <label for="name_attendance">Nombre de la asistencia:</label>
+                <input value="{{$asistencia->name_attendance}}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="apprentices_assisted">Aprendices asistidos:</label>
+                <input value="{{$asistencia->apprentices_assisted}}" class="form-control" readonly>
             </div>
         </div>
         <!-- /.card-body -->
