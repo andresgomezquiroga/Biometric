@@ -9,6 +9,25 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            @if (auth()->user()->hasRole('Instructor'))
+            <button class="btn btn-primary" id="startScanner">
+               Escanear Código QR
+           </button>
+            @endif
+            <div class="container mx-auto mt-4 p-4">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Contenedor del video de la cámara -->
+                                <div class="bg-black rounded-lg overflow-hidden" style="max-width: 400px;">
+                                    <video id="preview" class="w-100" style="display: none;"></video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card-header">
                 <h3 class="card-title">Tabla de asistencias</h3>
             </div>
@@ -114,6 +133,64 @@
             if (result.isConfirmed) {
                 $('#delete-form-' + id).submit();
             }
+        });
+    });
+</script>
+
+<script>
+    var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+
+    document.getElementById('startScanner').addEventListener('click', function () {
+        // Muestra el video cuando se hace clic en el botón
+        document.getElementById('preview').style.display = 'block';
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+
+                scanner.addListener('scan', function (content) {
+                    // Content contiene los datos del código QR escaneado
+                    // Realiza una solicitud Ajax para registrar la asistencia
+                    $.ajax({
+                        method: "POST",
+                        url: "{{ route('storeCodigoQr') }}",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            qr_data: content
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            if (response == "si") {
+                                Swal.fire(
+                                    '¡Éxito!',
+                                    'La asistencia se creó correctamente.',
+                                    'success'
+                                ).then(function() {
+                                    location.reload(); // Refresca la página después de mostrar el mensaje
+                                });
+                            } else {
+                                Swal.fire(
+                                    'Error',
+                                    'Hubo un error al crear la asistencia.',
+                                    'error'
+                                );
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                            Swal.fire(
+                                'Error',
+                                'Hubo un error al crear la asistencia.',
+                                'error'
+                            );
+                        }
+                    });
+                });
+            } else {
+                alert('No se encontraron cámaras disponibles.');
+            }
+        }).catch(function (error) {
+            console.error(error);
         });
     });
 </script>

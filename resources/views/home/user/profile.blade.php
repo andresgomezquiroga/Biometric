@@ -168,6 +168,9 @@
                         <button type="submit" class="btn btn-success">
                             Actualizar Perfil
                         </button>
+                      @if (auth()->user()->hasRole('Aprendiz'))
+                    <a href="{{ route('generateQRCode') }}" class="btn btn-primary">Visualizar código QR</a>
+                    @endif
                   </div>
                 </div>
               </form>

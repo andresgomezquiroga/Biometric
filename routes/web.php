@@ -11,6 +11,8 @@ use App\Http\Controllers\ExcusesController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\QRController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +135,9 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::get('competence/{competence}/edit', [CompetenceController::class, 'edit'])->name('competence.edit');
         Route::put('competence/{competence}', [CompetenceController::class, 'update'])->name('competence.update');
         Route::delete('competence/{competence}', [CompetenceController::class, 'destroy'])->name('competence.destroy');
+
+        Route::get('generate-qr-code', [QRController::class , 'index'])->name('generateQRCode');
+        Route::post('addDateByCodigoQr', [QRController::class , 'addDateByCodigoQr'])->name('storeCodigoQr');
 
     });
 });
