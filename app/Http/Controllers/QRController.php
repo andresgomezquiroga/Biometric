@@ -9,6 +9,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
+
 class QRController extends Controller
 {
     public function index()
@@ -35,7 +36,7 @@ class QRController extends Controller
         $attendance = Asistencia::create([
             'code_attendance' => $code,
             'name_attendance' => $name,
-            'time_attendance' => $currentTime,
+            'admission_time' => $currentTime,
             'apprentices_assisted' => $nameFull,
 
         ]);
