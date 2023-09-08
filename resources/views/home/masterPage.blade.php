@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title' , 'Biometric')</title>
+    <title>@yield('title' , 'QRservice')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -89,7 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="brand-link">
                 <img src="{{asset('img/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light">Biometric Sena</span>
+                <span class="brand-text font-weight-light">QR service</span>
             </a>
 
             <!-- Sidebar -->
@@ -315,36 +315,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @endcan
                         </li>
 
-
-                        <li class="nav-item bordeo">
-                            @can('competence.index') <!-- Verificar si el usuario tiene permiso para listar competencias -->
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-solid fa-id-card"></i>
-                                <p>
-                                    Competencias
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('competence.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Listar competencias</p>
-                                    </a>
-                                </li>
-                                @can('competence.create') <!-- Verificar si el usuario tiene permiso para crear competencias -->
-                                <li class="nav-item">
-                                    <a href="{{ route('competence.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Crear una competencia</p>
-                                    </a>
-                                </li>
-                                @endcan
-                            </ul>
-                            @endcan
-                        </li>
-
-
                         @can('permission.index')
                         <span class="segurity">Seguridad</span>
                         <li class="nav-item">
@@ -462,12 +432,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-
 <!-- Dashboard js -->
 <script src="{{ asset('js/dashboard.js') }}"></script>
 
     <!-- Dashboard js -->
     @yield('js')
+
 
 </body>
 

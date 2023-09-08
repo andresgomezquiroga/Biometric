@@ -129,13 +129,6 @@ Route::group(['middleware' => 'prevent-back-history-middleware'], function () {
         Route::post('/excuse/approve/{id}', [ExcusesController::class, 'approveExcuse'])->name('excuse.approve');
         Route::post('/excuse/reject/{id}', [ExcusesController::class, 'rejectExcuse'])->name('excuse.reject');
 
-        Route::get('competence', [CompetenceController::class, 'index'])->name('competence.index');
-        Route::get('competence/create', [CompetenceController::class, 'create'])->name('competence.create');
-        Route::post('competence', [CompetenceController::class, 'store'])->name('competence.store');
-        Route::get('competence/{competence}/edit', [CompetenceController::class, 'edit'])->name('competence.edit');
-        Route::put('competence/{competence}', [CompetenceController::class, 'update'])->name('competence.update');
-        Route::delete('competence/{competence}', [CompetenceController::class, 'destroy'])->name('competence.destroy');
-
         Route::get('generate-qr-code', [QRController::class , 'index'])->name('generateQRCode');
         Route::post('addDateByCodigoQr', [QRController::class , 'addDateByCodigoQr'])->name('storeCodigoQr');
 

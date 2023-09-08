@@ -17,7 +17,6 @@ class Ficha extends Model
         'date_start',
         'date_end',
         'programa_id',
-        'competences_id',
     ];
 
     public function programa()
@@ -36,10 +35,5 @@ class Ficha extends Model
             ->whereHas('roles', function ($query) {
                 $query->where('name', 'Instructor');
             });
-    }
-
-    public function competence()
-    {
-        return $this->belongsTo(Competence::class, 'competences_id');
     }
 }

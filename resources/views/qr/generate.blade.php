@@ -24,6 +24,9 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrious@4/dist/qrious.min.js"></script>
 <script>
     document.getElementById('generateQRButton').addEventListener('click', function() {
@@ -56,3 +59,4 @@
     });
 </script>
 @endsection
+

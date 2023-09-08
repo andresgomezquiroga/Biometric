@@ -20,8 +20,6 @@ return new class extends Migration
             $table->foreign('programa_id')->references('id_program')->on('programas');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('competences_id')->nullable();
-            $table->foreign('competences_id')->references('id_competence')->on('competences');
 
             $table->timestamps();
         });

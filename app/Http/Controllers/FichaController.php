@@ -19,13 +19,13 @@ class FichaController extends Controller
     
         // Si el usuario es instructor o administrador, obtiene todas las fichas con sus programas de formación
         if ($user->hasRole('Administrador')) {
-            $fichas = Ficha::with(['programa', 'competence'])->get();
+            $fichas = Ficha::with(['programa'])->get();
         }
         // Si el usuario es aprendiz, obtiene solamente las fichas relacionadas con el permiso específico
         else if ($user->hasRole(['Instructor', 'Aprendiz'])) {
             $fichas = Ficha::whereHas('members', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
-            })->with(['programa', 'competence'])->get();
+            })->with(['programa'])->get();
         }
 
         // Si el usuario no tiene ningún rol reconocido, no se mostrará ninguna ficha
@@ -68,9 +68,8 @@ class FichaController extends Controller
     public function create()
     {
         $programas = Programa::all(); // Esto obtiene todos los programas de formación disponibles
-        $competences = Competence::all();
 
-        return view('home.ficha.create', compact('programas', 'competences'));
+        return view('home.ficha.create', compact('programas'));
     }
 
     public function store(Request $request)
@@ -80,7 +79,6 @@ class FichaController extends Controller
             'date_start' => 'required|date',
             'date_end' => 'required|date',
             'programa_id' => 'required',
-            'competences_id' => 'required',
         ]);
 
         $ficha = new Ficha();
@@ -88,7 +86,6 @@ class FichaController extends Controller
         $ficha->date_start = $request->input('date_start');
         $ficha->date_end = $request->input('date_end');
         $ficha->programa_id = $request->input('programa_id');
-        $ficha->competences_id = $request->input('competences_id');
         $ficha->save();
 
         return redirect()->route('ficha.index')->with('success', 'Ficha creada exitosamente');
@@ -97,8 +94,7 @@ class FichaController extends Controller
     public function edit(Ficha $ficha)
     {
         $programas = Programa::all();
-        $competences = Competence::all();
-        return view('home.ficha.edit', compact('ficha', 'programas', 'competences'));
+        return view('home.ficha.edit', compact('ficha', 'programas'));
     }
 
 
@@ -115,14 +111,12 @@ class FichaController extends Controller
             'date_start' => 'required|date',
             'date_end' => 'required|date',
             'programa_id' => 'required',
-            'competences_id' => 'required',
         ]);
 
         $ficha->number_ficha = $request->input('number_ficha');
         $ficha->date_start = $request->input('date_start');
         $ficha->date_end = $request->input('date_end');
         $ficha->programa_id = $request->input('programa_id');
-        $ficha->competences_id = $request->input('competences_id');
         $ficha->update();
 
         return redirect()->back()->with('success', 'Ficha actualizada exitosamente');

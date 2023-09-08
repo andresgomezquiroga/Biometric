@@ -35,7 +35,7 @@ $("#attendance").DataTable({
       "extend": "pdf",
       "className": "btn-danger mr-2",
       "exportOptions": {
-        "columns": [1, 2]  
+        "columns": [0,1,2,3]  
       }
     },
     {
