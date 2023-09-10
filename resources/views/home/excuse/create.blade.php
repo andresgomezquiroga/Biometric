@@ -1,16 +1,16 @@
 @extends('home.masterPage')
 
-@section('title', 'Listado de horarios')
+@section('title', 'Crear excusas')
 
 @section('content')
 
-@section('title_content', 'Crear Horarios')
+@section('title_content', 'Crear excusa')
 
 <div class="container">
     <div class="col-md-12">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Crear horario</h3>
+                <h3 class="card-title">Crear excusa</h3>
             </div>
             <div class="card-body">
                 @if (session('success'))

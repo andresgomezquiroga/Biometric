@@ -1,17 +1,17 @@
 @extends('home.masterPage')
 
-@section('title', 'Crear un permiso')
+@section('title', 'Crear un Rol')
 
 @section('content')
 
-@section('title_content', 'Crear permiso')
+@section('title_content', 'Crear Rol')
 <div class="container">
     <!-- left column -->
     <div class="col-md-12">
 
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Crear permiso</h3>
+                <h3 class="card-title">Crear Rol</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

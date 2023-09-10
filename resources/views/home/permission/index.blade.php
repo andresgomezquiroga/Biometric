@@ -14,7 +14,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Aquí está toda la información de las competencias</h3>
+                    <h3 class="card-title">Aquí está toda la información de los Permisos</h3>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                             <small>{{ session('success') }}</small>

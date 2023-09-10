@@ -1,6 +1,6 @@
 @extends('home.masterPage')
 
-@section('title', 'Listado de horarios')
+@section('title', 'Crear horarios')
 
 @section('content')
 
