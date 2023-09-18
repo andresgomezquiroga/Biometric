@@ -21,41 +21,36 @@ class QRController extends Controller
     public function addDateByCodigoQr(Request $request)
     {
         $dataAjax = $request->input('qr_data');
-
-        //$apprentice = $data->Nombre . ' ' . $data->Apellido;
-
-        $name = "Asistio con el QR";
+    
+        $name = "Asistió con el QR";
         $code = rand(10000, 99999);
-
+    
         date_default_timezone_set('America/Bogota');
         $currentTime = date('H:i:s');
-
+    
         $dataUser = User::find($dataAjax[0]);
         $nameFull = $dataUser->first_name . ' ' . $dataUser->last_name;
-
-
-        //Compruebo si los dos campos son vacios
-        if (empty($dataAjax[1] && $dataAjax[2])) {
-            //si son vacios me pone la hora actual
-            $startTime = $currentTime;
-            $endTime = $currentTime;
-            //si un campo tiene algo, si tiene valor me pone la hora
-        } elseif (!empty($dataAjax[1])) {
-            $startTime = $dataAjax[1];
+    
+        $existingAttendance = Asistencia::where('apprentices_assisted', $nameFull)
+            ->whereNotNull('admission_time')
+            ->first();
+    
+        if ($existingAttendance) {
+            $startTime = $existingAttendance->admission_time;
             $endTime = $currentTime;
         } else {
             $startTime = $currentTime;
-            $endTime = $dataAjax[2];
+            $endTime = $currentTime;
         }
-
+    
         $attendance = Asistencia::create([
             'code_attendance' => $code,
             'name_attendance' => $name,
             'admission_time' => $startTime,
             'apprentices_assisted' => $nameFull,
-            'exit_time' => $endTime
+            'exit_time' => $endTime,
         ]);
-
+    
         if ($attendance) {
             echo "si";
         } else {
