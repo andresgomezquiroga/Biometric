@@ -62,7 +62,7 @@ class QRController extends Controller
             }
         }
     
-        return response()->with('success', 'Asistencia registrada exitosamente.');
+        return response(['message' => 'success']);
     }
 
 }
