@@ -40,10 +40,10 @@ class QRController extends Controller
             $startTime = $currentTime;
             $endTime = $currentTime;
             //si un campo tiene algo, si tiene valor me pone la hora
-        }elseif(!empty($dataAjax[1])){
+        } elseif (!empty($dataAjax[1])) {
             $startTime = $dataAjax[1];
             $endTime = $currentTime;
-        }else{
+        } else {
             $startTime = $currentTime;
             $endTime = $dataAjax[2];
         }
@@ -54,7 +54,6 @@ class QRController extends Controller
             'admission_time' => $startTime,
             'apprentices_assisted' => $nameFull,
             'exit_time' => $endTime
-
         ]);
 
         if ($attendance) {
