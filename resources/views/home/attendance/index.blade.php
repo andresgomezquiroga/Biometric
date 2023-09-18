@@ -164,7 +164,7 @@
                         },
                         success: function(response) {
                             console.log(response);
-                            if (response == "si") {
+                            if (response == "success") {
                                 Swal.fire(
                                     '¡Éxito!',
                                     'La asistencia se creó correctamente.',
