@@ -21,12 +21,6 @@
                         {{session('success')}}
                     </small>
                 </div>
-            @elseif(session('info'))
-                <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                        <small>
-                            {{session('info')}}
-                        </small>
-                </div>
                 @endif
 
                 <form action="{{ route('attendance.store') }}" method="POST">
@@ -39,12 +33,18 @@
                                 <input type="text" class="form-control" id="code_attendance" name="code_attendance">
                             </div>
                         </div>
+                        @error('code_attendance')
+                            <small class="text-danger mt-1"><strong>{{$message}}</strong></small>
+                        @enderror
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="admission_time">Hora asistencia</label>
                                 <input type="time" class="form-control" id="admission_time" name="admission_time"> 
                             </div>
                         </div>
+                        @error('admission_time')
+                            <small class="text-danger mt-1"><strong>{{$message}}</strong></small>
+                        @enderror
 
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -52,13 +52,21 @@
                                 <input type="text" class="form-control" id="name_attendance" name="name_attendance">
                             </div>
                         </div>
+                        @error('name_attendance')
+                            <small class="text-danger mt-1"><strong>{{$message}}</strong></small>
+                        @enderror
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="apprentices_assisted">Aprendices asistidos</label>
+                                <label for="apprentices_assisted">Aprendices</label>
                                 <input type="text" class="form-control" id="apprentices_assisted" name="apprentices_assisted">
+                                @error('apprentices_assisted')
+                                    <small class="text-danger mt-1"><strong>{{$message}}</strong></small>
+                                @enderror
                             </div>
+                            
                         </div>
+                        
 
                     <div class="row">
 

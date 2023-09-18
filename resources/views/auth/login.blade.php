@@ -16,7 +16,7 @@
                     @csrf
                     <img src="{{asset('img/logo.jpg')}}"
                         class="img-fluid mb-4" alt="logo" width="160" height="160">
-                    <h3 class="text-dark fw-bolder fs-4 mb-2">Inicio de Session</h3>
+                    <h3 class="text-dark fw-bolder fs-4 mb-2">Inicio de Sesión</h3>
                     <div class="fw-normal text-muted mb-4">
                         Debes llenar todos los campos
                     </div>

@@ -19,6 +19,7 @@ class HorariosController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $horarios = [];
     
         if ($user->hasRole('Administrador')) {
             // Si es un administrador, obtén todos los horarios
