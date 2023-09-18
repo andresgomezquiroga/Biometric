@@ -42,10 +42,12 @@ class QRController extends Controller
                 // Si la "hora de inicio" ya está registrada pero la "hora de finalización" está vacía, la establecemos
                 $existingAttendance->exit_time = $currentTime;
             } else {
-                // Ambos campos ya están ocupados, puedes manejar un error aquí
-                echo "Ambos campos ya están ocupados, no se puede registrar la asistencia nuevamente.";
-                return;
+                // Ambos campos ya están ocupados, puedes manejarlo de la manera que desees
+                return response()->json(['message' => "Ambos campos ya están ocupados, no se puede registrar la asistencia nuevamente."]);
             }
+    
+            // Guardamos los cambios en la entrada de asistencia existente (si existe)
+            $existingAttendance->save();
         } else {
             // No existe una entrada previa, registramos solo la "hora de inicio"
             $attendance = Asistencia::create([
@@ -56,17 +58,11 @@ class QRController extends Controller
             ]);
     
             if (!$attendance) {
-                echo "No se pudo crear la asistencia.";
-                return;
+                return response()->json(['message' => "No se pudo crear la asistencia."]);
             }
         }
     
-        // Guardamos los cambios en la entrada de asistencia existente (si existe)
-        if ($existingAttendance) {
-            $existingAttendance->save();
-        }
-    
-        echo "Asistencia registrada exitosamente.";
+        return response()->json(['message' => "Asistencia registrada exitosamente."]);
     }
 
 }
