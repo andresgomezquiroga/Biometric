@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name_attendance');
             $table->time('admission_time');
             $table->string('apprentices_assisted')->nullable();
+            $table->time('exit_time')->nullable();
             $table->timestamps();
         });
     }

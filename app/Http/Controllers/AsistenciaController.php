@@ -36,22 +36,21 @@ class AsistenciaController extends Controller
     public function store(Request $request)
     {
         //
-        $validator = validator($request->all(), [
+        $request->validate([
             'admission_time' => 'required|date_format:H:i',
             'name_attendance' => 'required|max:255',
             'code_attendance' => 'required|max:255',
             'apprentices_assisted' => 'required|max:255',
+            'exit_time' => 'required|date_format:H:i',
             ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->with('info', 'Campos incompletos');
-        }
 
         Asistencia::create([
             'admission_time' => $request->admission_time,
             'name_attendance' => $request->name_attendance,
             'code_attendance' => $request->code_attendance,
-            'apprentices_assisted' => $request->apprentices_assisted
+            'apprentices_assisted' => $request->apprentices_assisted,
+            'exit_time' => $request->exit_time
         ]);
 
         return redirect()->back()->with('success', 'Asistencia creada exitosamente');
@@ -80,21 +79,20 @@ class AsistenciaController extends Controller
     public function update(Request $request, Asistencia $asistencia)
     {
         //
-        $validator = validator($request->all(), [
+        $request->validate([
             'admission_time' => 'required|date_format:H:i',
             'name_attendance' => 'required|max:255',
             'code_attendance' => 'required|max:255',
             'apprentices_assisted' => 'required|max:255',
+            'exit_time' => 'required|date_format:H:i',
             ]);
         
-        if ($validator->fails()) {
-            return redirect()->back()->with('info', 'Campos incompletos');
-        }
         $asistencia->update([
             'admission_time' => $request->admission_time,
             'name_attendance' => $request->name_attendance,
             'code_attendance' => $request->code_attendance,
-            'apprentices_assisted' => $request->aprentices_assisted
+            'apprentices_assisted' => $request->aprentices_assisted,
+            'exit_time' => $request->exit_time
         ]);
         return redirect()->back()->with('success', 'Asistencia actualizada exitosamente');
     }

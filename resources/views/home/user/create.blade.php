@@ -34,7 +34,7 @@
                                 <label>Nombre:</label>
                                 <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" class="form-control">
                             @error('first_name')
-                                <small class="text-danger"><strong>{{$message}}</strong></small>
+                                <small class="text-danger"><strong>*</strong></small>
                             @enderror
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 <label>Apellidos:</label>
                                 <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" class="form-control">
                             @error('last_name')
-                                <small class="text-danger"><strong>{{$message}}</strong></small>
+                                <small class="text-danger"><strong>*</strong></small>
                             @enderror
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 <label>Edad:</label>
                                 <input type="number" name="age" id="age" value="{{ old('age') }}" class="form-control">
                             @error('age')
-                                <small class="text-danger"><strong>{{$message}}</strong></small>
+                                <small class="text-danger"><strong>*</strong></small>
                             @enderror
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                     <option value="F" {{ old('gander') == 'F' ? 'selected' : '' }}>Femenino</option>
                                 </select>
                                 @error('gander')
-                                    <small class="text-danger"><strong>{{$message}}</strong></small>
+                                    <small class="text-danger"><strong>*</strong></small>
                                 @enderror
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                     <option value="CE" {{ old('type_document') == 'CE' ? 'selected' : '' }}>Cedula de extranjeria</option>
                                 </select>
                                 @error('type_document')
-                                    <small class="text-danger"><strong>{{$message}}</strong></small>
+                                    <small class="text-danger"><strong>*</strong></small>
                                 @enderror
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <label>Numero de documento:</label>
                                 <input type="number" name="document_number" id="document_number" value="{{ old('document_number') }}" class="form-control">
                             @error('document_number')
-                                <small class="text-danger"><strong>{{$message}}</strong></small>
+                                <small class="text-danger"><strong>*</strong></small>
                             @enderror
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                         <label>Correo electronico:</label>
                         <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control">
                         @error('email')
-                            <small class="text-danger"><strong>{{$message}}</strong></small>
+                            <small class="text-danger"><strong>*</strong></small>
                         @enderror
                     </div>
 
@@ -125,7 +125,7 @@
                           </select>
                           <br>
                           @error('roles')
-                              <small class="text-danger"><strong>{{$message}}</strong></small>
+                              <small class="text-danger"><strong>*</strong></small>
                           @enderror
                     </div>
 

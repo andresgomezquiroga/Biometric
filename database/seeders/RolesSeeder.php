@@ -21,12 +21,12 @@ class RolesSeeder extends Seeder
 
         Permission::create([
             'name' => 'role.index',
-            'group' => 'Listar role'
+            'group' => 'Listar roles'
         ]);/*1*/
 
         Permission::create([
             'name' => 'role.create',
-            'group' => 'Crear role'
+            'group' => 'Crear roles'
         ]);/*2*/
 
         Permission::create([

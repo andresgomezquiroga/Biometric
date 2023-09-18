@@ -23,12 +23,6 @@
                     {{ session('success') }}
                 </small>
             </div>
-        @elseif (session('info'))
-            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                <small>
-                    {{ session('info') }}
-                </small>
-            </div>
         @endif
 
             <form action="{{ route('programa.update', $programa->id_program) }}" method="POST">

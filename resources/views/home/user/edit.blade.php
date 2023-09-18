@@ -23,12 +23,6 @@
                     {{session('success')}}
                 </small>
             </div>
-            @elseif (session ('info'))
-            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-                <small>
-                    {{session('info')}}
-                </small>
-            </div>
             @endif
 
             <form action="{{route('user.update', $user->id) }}" method="POST">
@@ -101,9 +95,6 @@
                             @endforeach
                           </select>
                           <br>
-                          @error('roles')
-                              <small class="text-danger"><strong>{{$message}}</strong></small>
-                          @enderror
                 </div>
 
                 <div class="text-center">

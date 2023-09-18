@@ -23,12 +23,6 @@
                     {{ session('success') }}
                 </small>
             </div>
-        @elseif (session('info'))
-            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                <small>
-                    {{ session('info') }}
-                </small>
-            </div>
         @endif
 
             <form action="{{ route('attendance.update', $asistencia->id_attendance) }}" method="POST">
@@ -41,6 +35,10 @@
                     <div class="form-group">
                         <label for="admission_time">Hora asistencia</label>
                         <input type="time" class="form-control" id="admission_time" name="admission_time"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="exit_time">Hora salida</label>
+                        <input type="time" class="form-control" id="exit_time" name="exit_time">
                     </div>
                     <div class="form-group">
                         <label for="name_attendance">Nombre de la asistencia</label>

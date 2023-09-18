@@ -15,6 +15,7 @@ class Asistencia extends Model
         'name_attendance',
         'code_attendance',
         'apprentices_assisted',
+        'exit_time',
     ];
 
 }

@@ -47,7 +47,8 @@
                         <thead>
                             <tr>
                                 <th>Codigo</th>
-                                <th>Hora de la asistencia</th>
+                                <th>Hora de la inasistencia</th>
+                                <th>Hora de la salida</th>
                                 <th>Nombre de la asistencia</th>
                                 <th>Aprendices asistidos</th>
                                 @if (auth()->user()->hasRole('Administrador'))
@@ -61,6 +62,7 @@
                             <tr>
                                 <td>{{$asistencia->code_attendance}}</td>
                                 <td>{{$asistencia->admission_time}}</td>
+                                <td>{{$asistencia->exit_time}}</td>
                                 <td>{{$asistencia->name_attendance}}</td>
                                 <td>{{$asistencia->apprentices_assisted}}</td>
 
@@ -84,6 +86,7 @@
                             <tr>
                                 <th>Codigo</th>
                                 <th>Hora de la asistencia</th>
+                                <th>Hora de la salida</th>
                                 <th>Nombre de la asistencia</th>
                                 <th>Aprendices asistidos</th>
                                 @if (auth()->user()->hasRole('Administrador'))

@@ -33,11 +33,27 @@ class QRController extends Controller
         $dataUser = User::find($dataAjax[0]);
         $nameFull = $dataUser->first_name . ' ' . $dataUser->last_name;
 
+
+        //Compruebo si los dos campos son vacios
+        if (empty($dataAjax[1] && $dataAjax[2])) {
+            //si son vacios me pone la hora actual
+            $startTime = $currentTime;
+            $endTime = $currentTime;
+            //si un campo tiene algo, si tiene valor me pone la hora
+        }elseif(!empty($dataAjax[1])){
+            $startTime = $dataAjax[1];
+            $endTime = $currentTime;
+        }else{
+            $startTime = $currentTime;
+            $endTime = $dataAjax[2];
+        }
+
         $attendance = Asistencia::create([
             'code_attendance' => $code,
             'name_attendance' => $name,
-            'admission_time' => $currentTime,
+            'admission_time' => $startTime,
             'apprentices_assisted' => $nameFull,
+            'exit_time' => $endTime
 
         ]);
 

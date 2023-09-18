@@ -36,6 +36,9 @@
                                     <option value="Tarde" {{ old('Jornada') == 'Tarde' ? 'selected' : '' }}>Tarde</option>
                                     <option value="Mixta" {{ old('Jornada') == 'Mixta' ? 'selected' : '' }}>Mixta</option>
                                 </select>
+                                @error('Jornada')
+                                    <span class="text-danger">*</span>
+                                @enderror
                             </div>
                         </div>
 
@@ -43,6 +46,9 @@
                             <div class="form-group">
                                 <label for="Fecha_inicio">Fecha de inicio</label>
                                 <input type="date" class="form-control" id="Fecha_inicio" name="Fecha_inicio" value="{{ old('Fecha_inicio') }}">
+                                @error('Fecha_inicio')
+                                <span class="text-danger">*</span>
+                                @enderror
                             </div>
                         </div>
 
@@ -51,6 +57,9 @@
                                 <div class="form-group">
                                     <label for="Fecha_finalizacion">Fecha de finalización</label>
                                     <input type="date" class="form-control" id="Fecha_finalizacion" name="Fecha_finalizacion" value="{{ old('Fecha_finalizacion') }}">
+                                    @error('Fecha_finalizacion')
+                                    <span class="text-danger">*</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -58,6 +67,9 @@
                                 <div class="form-group">
                                     <label for="time_start">Hora de inicio</label>
                                     <input type="time" class="form-control" id="time_start" name="time_start" value="{{ old('time_start') }}">
+                                    @error('time_start')
+                                    <span class="text-danger">*</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -65,6 +77,9 @@
                                 <div class="form-group">
                                     <label for="time_finish">Hora de finalizacion</label>
                                     <input type="time" class="form-control" id="time_finish" name="time_finish" value="{{ old('time_finish') }}">
+                                    @error('time_finish')
+                                    <span class="text-danger">*</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -83,6 +98,9 @@
                                             @endif
                                         @endforeach
                                     </select>
+                                    @error('ficha_id')
+                                    <span class="text-danger">*</span>
+                                    @enderror
                                 </div>
                             </div>
                 

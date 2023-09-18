@@ -21,12 +21,6 @@
                         {{session('success')}}
                     </small>
                 </div>
-            @elseif(session('info'))
-                <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                        <small>
-                            {{session('info')}}
-                        </small>
-                </div>
                 @endif
 
                 <form action="{{ route('programa.store') }}" method="POST">
@@ -37,12 +31,18 @@
                             <div class="form-group">
                                 <label for="name_program">Nombre del programa</label>
                                 <input type="text" class="form-control" id="name_program" name="name_program">
+                                @error('name_program')
+                                    <small class="text-danger"><strong>*</strong></small>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="program_code">Código del programa</label>
                                 <input type="text" class="form-control" id="program_code" name="program_code">
+                                @error('program_code')
+                                    <small class="text-danger"><strong>*</strong></small>
+                                @enderror
                             </div>
                         </div>
 

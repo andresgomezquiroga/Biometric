@@ -17,10 +17,6 @@
                     <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                         <small>{{ session('success') }}</small>
                     </div>
-                @elseif (session('info'))
-                    <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                        <small>{{ session('info') }}</small>
-                    </div>
                 @endif
 
                 <form action="{{ route('excuse.store') }}" method="POST" enctype="multipart/form-data">
@@ -32,6 +28,9 @@
                                 <br>
                                 <input type="file" id="archive" name="archive"> 
                             </div>
+                            @error('archive')
+                                <small class="text-danger"><strong>*</strong></small>
+                            @enderror
                         </div>
 
                         <div class="col-sm-6">
@@ -39,6 +38,9 @@
                                 <label for="date_excuse">Fecha inasistencias</label>
                                 <input type="date" class="form-control" id="date_excuse" name="date_excuse" value="{{ old('time_finish') }}">
                             </div>
+                            @error('date_excuse')
+                                <small class="text-danger"><strong>*</strong></small>
+                            @enderror
                         </div>
 
 
@@ -47,6 +49,9 @@
                                 <label for="comment">Explicacion de la excusa</label>
                                 <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
                             </div>
+                            @error('comment')
+                                <small class="text-danger"><strong>*</strong></small>
+                            @enderror
                         </div>
 
                         <div class="col-sm-6">

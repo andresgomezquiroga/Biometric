@@ -23,12 +23,6 @@
                     {{ session('success') }}
                 </small>
             </div>
-        @elseif (session('info'))
-            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                <small>
-                    {{ session('info') }}
-                </small>
-            </div>
         @endif
 
             <form action="{{ route('excuse.update', $excuse->id_excuse) }}" method="POST" enctype="multipart/form-data">

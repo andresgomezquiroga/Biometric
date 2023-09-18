@@ -56,7 +56,7 @@ class PermissionController extends Controller
                 ['name' => 'ficha.index', 'label' => 'Listar fichas'],
                 ['name' => 'ficha.create', 'label' => 'Crear ficha'],
             ],
-            // Otros grupos y permisos...
+
             'Usuarios' => [
                 ['name' => 'user.index', 'label' => 'Listar usuarios'],
                 ['name' => 'user.create', 'label' => 'Crear usuario'],
@@ -67,7 +67,7 @@ class PermissionController extends Controller
             ],
             'Roles' => [
                 ['name' => 'role.index', 'label' => 'Listar roles'],
-                ['name' => 'role.create', 'label' => 'Crear rol'],
+                ['name' => 'role.create', 'label' => 'Crear roles'],
             ],
             'Asistencias' => [
                 ['name' => 'attendance.index', 'label' => 'Listar asistencias'],
@@ -81,17 +81,13 @@ class PermissionController extends Controller
                 ['name' => 'timeTable.index', 'label' => 'Listar horarios'],
                 ['name' => 'timeTable.create', 'label' => 'Crear horario'],
             ],
-            'Competencias' => [
-                ['name' => 'competence.index', 'label' => 'Listar competencias'],
-                ['name' => 'competence.create', 'label' => 'Crear competencia'],
-            ]
         ];
     }
 
     protected function getPermissionGroups()
     {
         // Devuelve la lista de grupos de permisos
-        return ['Fichas', 'Horarios', 'Usuarios', 'Programas', 'Roles', 'Asistencias', 'Excusas', 'Horarios', 'Competencias'];
+        return ['Fichas', 'Horarios', 'Usuarios', 'Programas', 'Roles', 'Asistencias', 'Excusas', 'Horarios'];
     }
 
     protected function getPermissionByNameAndGroup($name, $group)

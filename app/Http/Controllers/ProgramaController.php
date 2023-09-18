@@ -23,14 +23,11 @@ class ProgramaController extends Controller
 
     public function store(Request $request)
     {
-        $validator = validator($request->all(), [
+        $request->validate([
             'name_program' => 'required',
             'program_code' => 'required',
         ]);
     
-        if ($validator->fails()) {
-            return redirect()->back()->with('info', 'Campos incompletos');
-        }
     
         Programa::create([
             'name_program' => $request->name_program,
