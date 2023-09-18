@@ -31,31 +31,42 @@ class QRController extends Controller
         $dataUser = User::find($dataAjax[0]);
         $nameFull = $dataUser->first_name . ' ' . $dataUser->last_name;
     
-        $existingAttendance = Asistencia::where('apprentices_assisted', $nameFull)
-            ->whereNotNull('admission_time')
-            ->first();
+        $existingAttendance = Asistencia::where('apprentices_assisted', $nameFull)->first();
     
         if ($existingAttendance) {
-            $startTime = $existingAttendance->admission_time;
-            $endTime = $currentTime;
+            // Ya existe una entrada de asistencia para el aprendiz
+            if (empty($existingAttendance->admission_time)) {
+                // Si la "hora de inicio" está vacía, la establecemos
+                $existingAttendance->admission_time = $currentTime;
+            } elseif (empty($existingAttendance->exit_time)) {
+                // Si la "hora de inicio" ya está registrada pero la "hora de finalización" está vacía, la establecemos
+                $existingAttendance->exit_time = $currentTime;
+            } else {
+                // Ambos campos ya están ocupados, puedes manejar un error aquí
+                echo "Ambos campos ya están ocupados, no se puede registrar la asistencia nuevamente.";
+                return;
+            }
         } else {
-            $startTime = $currentTime;
-            $endTime = $currentTime;
+            // No existe una entrada previa, registramos solo la "hora de inicio"
+            $attendance = Asistencia::create([
+                'code_attendance' => $code,
+                'name_attendance' => $name,
+                'admission_time' => $currentTime,
+                'apprentices_assisted' => $nameFull,
+            ]);
+    
+            if (!$attendance) {
+                echo "No se pudo crear la asistencia.";
+                return;
+            }
         }
     
-        $attendance = Asistencia::create([
-            'code_attendance' => $code,
-            'name_attendance' => $name,
-            'admission_time' => $startTime,
-            'apprentices_assisted' => $nameFull,
-            'exit_time' => $endTime,
-        ]);
-    
-        if ($attendance) {
-            echo "si";
-        } else {
-            echo "no";
+        // Guardamos los cambios en la entrada de asistencia existente (si existe)
+        if ($existingAttendance) {
+            $existingAttendance->save();
         }
+    
+        echo "Asistencia registrada exitosamente.";
     }
 
 }
