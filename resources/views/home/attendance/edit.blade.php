@@ -73,13 +73,25 @@
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label for="admission_time">Hora de la asistencia:</label>
+                <label for="admission_time">Codigo de la asistenciia:</label>
+                <input value="{{$asistencia->code_attendance}}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="admission_time">Hora de ingreso:</label>
                 <input value="{{$asistencia->admission_time}}" class="form-control" readonly>
             </div>
         </div>
         <div class="card-body">
             <div class="form-group">
-                <label for="name_attendance">Nombre de la asistencia:</label>
+                <label for="name_attendance">Hora de salida:</label>
+                <input value="{{$asistencia->exit_time}}" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="name_attendance">Tipo de registro:</label>
                 <input value="{{$asistencia->name_attendance}}" class="form-control" readonly>
             </div>
         </div>
