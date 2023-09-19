@@ -33,6 +33,7 @@
                                 @error('code_attendance')
                                 <small class="text-danger"><strong>*</strong></small>
                                 @enderror
+                                
                             </div>
                         </div>
                         <div class="col-sm-6">
