@@ -43,7 +43,7 @@ class QRController extends Controller
                 $existingAttendance->exit_time = $currentTime;
             } else {
                 // Ambos campos ya están ocupados, puedes manejarlo de la manera que desees
-                return response()->json(['message' => "Ambos campos ya están ocupados, no se puede registrar la asistencia nuevamente."]);
+                return response()->with('error', 'Ya existe una asistencia registrada.');
             }
     
             // Guardamos los cambios en la entrada de asistencia existente (si existe)
@@ -58,11 +58,11 @@ class QRController extends Controller
             ]);
     
             if (!$attendance) {
-                return response()->json(['message' => "No se pudo crear la asistencia."]);
+                return response()->with('error', 'No se pudo registrar la asistencia.');
             }
         }
     
-        return response()->json(['message' => "Asistencia registrada exitosamente."]);
+        return response(['message' => 'success']);
     }
 
 }

@@ -33,7 +33,7 @@
                         <input type="text" class="form-control" id="code_attendance" name="code_attendance">
                     </div>
                     <div class="form-group">
-                        <label for="admission_time">Hora asistencia</label>
+                        <label for="admission_time">Hora de ingreso</label>
                         <input type="time" class="form-control" id="admission_time" name="admission_time"> 
                     </div>
                     <div class="form-group">

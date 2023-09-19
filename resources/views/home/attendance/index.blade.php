@@ -47,7 +47,7 @@
                         <thead>
                             <tr>
                                 <th>Codigo</th>
-                                <th>Hora de la inasistencia</th>
+                                <th>Hora de ingreso</th>
                                 <th>Hora de la salida</th>
                                 <th>Nombre de la asistencia</th>
                                 <th>Aprendices asistidos</th>
@@ -164,7 +164,7 @@
                         },
                         success: function(response) {
                             console.log(response);
-                            if (response == "si") {
+                            if (response.message === "success") {
                                 Swal.fire(
                                     '¡Éxito!',
                                     'La asistencia se creó correctamente.',

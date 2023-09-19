@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="admission_time">Hora asistencia</label>
+                                <label for="admission_time">Hora de ingreso</label>
                                 <input type="time" class="form-control @error('admission_time') is-invalid @enderror" id="admission_time" name="admission_time" required>
                                 @error('admission_time')
                                 <small class="text-danger"><strong>*</strong></small>
