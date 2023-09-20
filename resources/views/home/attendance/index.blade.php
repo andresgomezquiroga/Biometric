@@ -50,7 +50,7 @@
                                 <th>Hora de ingreso</th>
                                 <th>Hora de la salida</th>
                                 <th>Nombre de la asistencia</th>
-                                <th>Aprendices asistidos</th>
+                                <th>Aprendices asistentes</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
@@ -88,7 +88,7 @@
                                 <th>Hora de la asistencia</th>
                                 <th>Hora de la salida</th>
                                 <th>Nombre de la asistencia</th>
-                                <th>Aprendices asistidos</th>
+                                <th>Aprendices asistentes</th>
                                 @if (auth()->user()->hasRole('Administrador'))
                                 <th>Editar</th>
                                 <th>Eliminar</th>
