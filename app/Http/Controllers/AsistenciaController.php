@@ -86,7 +86,7 @@ class AsistenciaController extends Controller
             'apprentices_assisted' => 'required|max:255',
             'exit_time' => 'required|date_format:H:i',
             ]);
-        
+
         $asistencia->update([
             'admission_time' => $request->admission_time,
             'name_attendance' => $request->name_attendance,
@@ -100,9 +100,11 @@ class AsistenciaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asistencia $asistencia)
+    public function destroy($id)
     {
+        $asistencia = Asistencia::findOrFail($id);
         $asistencia->delete();
+
         return redirect()->back()->with('delete', 'ok');
     }
 }

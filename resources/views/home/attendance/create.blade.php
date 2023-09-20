@@ -33,7 +33,7 @@
                                 @error('code_attendance')
                                 <small class="text-danger"><strong>*</strong></small>
                                 @enderror
-                                
+
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="name_attendance">Nombre de la inasistencia</label>
+                                <label for="name_attendance">Nombre de la asistencia</label>
                                 <input type="text" class="form-control @error('name_attendance') is-invalid @enderror" id="name_attendance" name="name_attendance" required>
                                 @error('name_attendance')
                                 <small class="text-danger"><strong>*</strong></small>
