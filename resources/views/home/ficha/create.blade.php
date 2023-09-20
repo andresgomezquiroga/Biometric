@@ -47,7 +47,7 @@
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="programa_id">Programa de formacion disponibles</label>
+                                <label for="programa_id">Programa de formación disponibles</label>
                                 <select class="form-control" id="programa_id" name="programa_id" required>
                                     @foreach ($programas as $programa)
                                         <option value="{{ $programa->id_program }}">Nombre del programa: {{ $programa->name_program }}</option>

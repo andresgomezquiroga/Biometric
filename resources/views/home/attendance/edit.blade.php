@@ -30,24 +30,39 @@
                 @method('PUT')
                     <div class="form-group">
                         <label for="code_attendance">Ingrese el codigo de la asistencia</label>
-                        <input type="text" class="form-control" id="code_attendance" name="code_attendance">
+                        <input type="text" class="form-control" id="code_attendance" name="code_attendance" value="{{$asistencia->code_attendance}}">
+                        @error('code_attendance')
+                            <span class="text text-danger"><strong>*</strong></span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="admission_time">Hora de ingreso</label>
-                        <input type="time" class="form-control" id="admission_time" name="admission_time">
+                        <input type="time" class="form-control" id="admission_time" name="admission_time" value="{{$asistencia->admission_time}}">
                     </div>
+                    @error('admission_time')
+                            <span class="text text-danger"><strong>*</strong></span>
+                    @enderror
                     <div class="form-group">
                         <label for="exit_time">Hora salida</label>
-                        <input type="time" class="form-control" id="exit_time" name="exit_time">
+                        <input type="time" class="form-control" id="exit_time" name="exit_time" value="{{ $asistencia->exit_time }}">
                     </div>
+                    @error('exit_time')
+                            <span class="text text-danger"><strong>*</strong></span>
+                    @enderror
                     <div class="form-group">
                         <label for="name_attendance">Nombre de la asistencia</label>
-                        <input type="text" class="form-control" id="name_attendance" name="name_attendance">
+                        <input type="text" class="form-control" id="name_attendance" name="name_attendance" value="{{ $asistencia->name_attendance }}">
                     </div>
+                    @error('name_attendance')
+                            <span class="text text-danger"><strong>*</strong></span>
+                    @enderror
                     <div class="form-group">
-                        <label for="aprentices_assisted">Aprendices asistidos</label>
-                        <input type="text" class="form-control" id="aprentices_assisted" name="aprentices_assisted">
+                        <label for="apprentices_assisted">Aprendices asistidos</label>
+                        <input type="text" class="form-control" id="apprentices_assisted" name="apprentices_assisted" value="{{$asistencia->apprentices_assisted}}">
                     </div>
+                    @error('apprentices_assisted')
+                            <span class="text text-danger"><strong>*</strong></span>
+                    @enderror
 
 
                 <div class="text-center">
